@@ -1,9 +1,8 @@
-package com.kiosk.model.dao;
+package com.kiosk.admin.dao;
 
 import java.util.List;
 
-import com.kiosk.model.dto.CouponDTO;
-import com.kiosk.model.dto.OrderDTO;
+import com.kiosk.admin.model.dto.CouponDTO;
 
 public interface CouponDAO {
 

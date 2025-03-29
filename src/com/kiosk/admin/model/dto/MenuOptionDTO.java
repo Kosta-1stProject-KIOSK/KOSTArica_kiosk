@@ -1,4 +1,4 @@
-package com.kiosk.model.dto;
+package com.kiosk.admin.model.dto;
 
 /*
  * 메뉴옵션 menu_option 테이블

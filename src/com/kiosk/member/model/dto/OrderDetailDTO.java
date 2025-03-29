@@ -1,4 +1,6 @@
-package com.kiosk.model.dto;
+package com.kiosk.member.model.dto;
+
+import com.kiosk.admin.model.dto.MenuOptionDTO;
 
 /**
  * 주문상세정보 order_detail 테이블
