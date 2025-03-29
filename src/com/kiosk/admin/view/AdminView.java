@@ -1,4 +1,4 @@
-package com.kiosk.view;
+package com.kiosk.admin.view;
 
 public class AdminView {
 	
