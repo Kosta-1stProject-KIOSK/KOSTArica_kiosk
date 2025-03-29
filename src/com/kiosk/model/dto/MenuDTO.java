@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * 메뉴정보 menu, category 테이블
  */
-public class ProductDTO {
+public class MenuDTO {
 
 	private int menuNo;
 	private String menuName;
@@ -20,7 +20,7 @@ public class ProductDTO {
     
     
     //Constructor
-	public ProductDTO(int menuNo, String menuName, int basicPrice, String description, LocalDateTime inputDate,
+	public MenuDTO(int menuNo, String menuName, int basicPrice, String description, LocalDateTime inputDate,
 			int capacity, boolean isActive, int categoryNo, String categoryName) {
 		super();
 		this.menuNo = menuNo;
@@ -104,7 +104,7 @@ public class ProductDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ProductDTO [menuNo=");
+		builder.append("MenuDTO [menuNo=");
 		builder.append(menuNo);
 		builder.append(", menuName=");
 		builder.append(menuName);
