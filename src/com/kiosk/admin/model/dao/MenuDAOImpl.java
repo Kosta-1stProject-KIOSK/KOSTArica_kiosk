@@ -1,4 +1,4 @@
-package com.kiosk.admin.dao;
+package com.kiosk.admin.model.dao;
 
 import java.util.List;
 

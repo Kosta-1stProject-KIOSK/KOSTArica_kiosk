@@ -1,4 +1,4 @@
-package com.kiosk.member.dao;
+package com.kiosk.member.model.dao;
 
 import java.util.List;
 
