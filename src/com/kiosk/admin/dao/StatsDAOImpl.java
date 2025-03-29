@@ -1,8 +1,8 @@
-package com.kiosk.model.dao;
+package com.kiosk.admin.dao;
 
 import java.util.List;
 
-import com.kiosk.model.dto.StatsDTO;
+import com.kiosk.admin.model.dto.StatsDTO;
 
 public class StatsDAOImpl implements StatsDAO {
 	

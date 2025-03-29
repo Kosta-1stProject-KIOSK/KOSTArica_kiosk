@@ -1,8 +1,8 @@
-package com.kiosk.model.dao;
+package com.kiosk.member.dao;
 
 import java.util.List;
 
-import com.kiosk.model.dto.MemberDTO;
+import com.kiosk.member.model.dto.MemberDTO;
 
 public class MemberDAOImpl implements MemberDAO {
 

@@ -1,4 +1,4 @@
-package com.kiosk.model.dto;
+package com.kiosk.member.model.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;

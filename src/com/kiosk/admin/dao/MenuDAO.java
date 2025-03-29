@@ -1,8 +1,8 @@
-package com.kiosk.model.dao;
+package com.kiosk.admin.dao;
 
 import java.util.List;
 
-import com.kiosk.model.dto.MenuDTO;
+import com.kiosk.admin.model.dto.MenuDTO;
 
 public interface MenuDAO {
 
