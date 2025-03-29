@@ -1,4 +1,4 @@
-package com.kiosk.model.dto;
+package com.kiosk.admin.model.dto;
 
 import java.time.LocalDate;
 
