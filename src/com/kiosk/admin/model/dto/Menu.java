@@ -1,27 +1,39 @@
 package com.kiosk.admin.model.dto;
 
-import java.time.LocalDateTime;
-
 /**
  * 메뉴정보 menu, category 테이블
  */
-public class MenuDTO {
+public class Menu {
 
 	private int menuNo;
 	private String menuName;
     private int basicPrice;
     private String description;
-    private LocalDateTime inputDate;
+    private String inputDate;
     private int capacity;
-    private boolean isActive;
+    private int isActive;
     private int categoryNo;
     private String categoryName;
     
     
     
     //Constructor
-	public MenuDTO(int menuNo, String menuName, int basicPrice, String description, LocalDateTime inputDate,
-			int capacity, boolean isActive, int categoryNo, String categoryName) {
+	public Menu(int menuNo, String menuName, int basicPrice, String description, String inputDate,
+			int capacity, int isActive, String categoryName) {
+		super();
+		this.menuNo = menuNo;
+		this.menuName = menuName;
+		this.basicPrice = basicPrice;
+		this.description = description;
+		this.inputDate = inputDate;
+		this.capacity = capacity;
+		this.isActive = isActive;
+		this.categoryName = categoryName;
+	}
+	
+    //Constructor
+	public Menu(int menuNo, String menuName, int basicPrice, String description, String inputDate,
+			int capacity, int isActive, int categoryNo, String categoryName) {
 		super();
 		this.menuNo = menuNo;
 		this.menuName = menuName;
@@ -64,10 +76,10 @@ public class MenuDTO {
 		this.description = description;
 	}
 
-	public LocalDateTime getInputDate() {
+	public String getInputDate() {
 		return inputDate;
 	}
-	public void setInputDate(LocalDateTime inputDate) {
+	public void setInputDate(String inputDate) {
 		this.inputDate = inputDate;
 	}
 
@@ -78,10 +90,10 @@ public class MenuDTO {
 		this.capacity = capacity;
 	}
 
-	public boolean isActive() {
+	public int isActive() {
 		return isActive;
 	}
-	public void setActive(boolean isActive) {
+	public void setActive(int isActive) {
 		this.isActive = isActive;
 	}
 
@@ -104,25 +116,23 @@ public class MenuDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("MenuDTO [menuNo=");
 		builder.append(menuNo);
-		builder.append(", menuName=");
+		builder.append(" | ");
 		builder.append(menuName);
-		builder.append(", basicPrice=");
+		builder.append(" | ");
 		builder.append(basicPrice);
-		builder.append(", description=");
+		builder.append(" | ");
 		builder.append(description);
-		builder.append(", inputDate=");
+		builder.append(" | ");
 		builder.append(inputDate);
-		builder.append(", capacity=");
+		builder.append(" | ");
 		builder.append(capacity);
-		builder.append(", isActive=");
+		builder.append(" | ");
 		builder.append(isActive);
-		builder.append(", categoryNo=");
+		builder.append(" | ");
 		builder.append(categoryNo);
-		builder.append(", categoryName=");
+		builder.append(" | ");
 		builder.append(categoryName);
-		builder.append("]");
 		return builder.toString();
 	}
 	
