@@ -1,8 +1,14 @@
 package com.kiosk.admin.model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.kiosk.admin.model.dto.MenuDTO;
+import com.kiosk.admin.model.dto.Menu;
+import com.kiosk.util.DBManager;
 
 public class MenuDAOImpl implements MenuDAO {
 
@@ -13,7 +19,7 @@ public class MenuDAOImpl implements MenuDAO {
 	 * @return MenuDTO (메뉴 정보가 담긴 객체)
 	 */
 	@Override
-	public MenuDTO searchById(int menuNo) {
+	public Menu searchById(int menuNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -26,7 +32,7 @@ public class MenuDAOImpl implements MenuDAO {
      * @return 해당 카테고리의 메뉴 리스트(List)
      */
 	@Override
-	public List<MenuDTO> searchByCategory(int categoryNo) {
+	public List<Menu> searchByCategory(int categoryNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,10 +44,39 @@ public class MenuDAOImpl implements MenuDAO {
      * @return 메뉴 리스트(List)
      */
 	@Override
-	public List<MenuDTO> searchAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<Menu> searchAll() throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select menu_no, menu_name, basic_price, description, input_date, capacity,  is_active, category_name	"
+				+ "from menu join category using(category_no);"; 
+				
+		List<Menu> list = new ArrayList<Menu>();
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Menu menu = new Menu(
+						rs.getInt(1), 
+						rs.getString(2),
+						rs.getInt(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getString(8));
+				
+				list.add(menu);
+			}//end while
+			
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		}//end finally
+		
+		return list;
+	}//searchAll
 
 	
 	
@@ -50,7 +85,7 @@ public class MenuDAOImpl implements MenuDAO {
      * @param 등록할 메뉴 정보(MenuDTO menu)
      */
 	@Override
-	public void insert(MenuDTO menu) {
+	public void insert(Menu menu) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -62,7 +97,7 @@ public class MenuDAOImpl implements MenuDAO {
      * @param 수정할 메뉴 정보 객체(MenuDTO menu)
      */
 	@Override
-	public void update(MenuDTO menu) {
+	public void update(Menu menu) {
 		// TODO Auto-generated method stub
 		
 	}
