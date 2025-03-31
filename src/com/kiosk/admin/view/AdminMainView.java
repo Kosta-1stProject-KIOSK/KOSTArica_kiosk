@@ -53,6 +53,7 @@ public class AdminMainView {
 				break;
 			case 3:
 				// 통계관리 메인화면
+				AdminStatsView.printAdminStatsManage();
 				break;
 			case 0:
 				MainMenuView.mainMenu(); // 뒤로가기 (모드선택 화면)
