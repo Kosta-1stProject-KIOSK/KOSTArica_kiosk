@@ -48,6 +48,7 @@ public class AdminMainView {
 				break;
 			case 2:
 				// 쿠폰관리 메인화면
+				AdminCouponView.printAdminCouponManage();
 				break;
 			case 3:
 				// 통계관리 메인화면

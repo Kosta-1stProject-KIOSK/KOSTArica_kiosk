@@ -7,10 +7,6 @@ import com.kiosk.admin.service.AdminMenuService;
 import com.kiosk.admin.view.AdminFailView;
 import com.kiosk.admin.view.AdminMenuView;
 
-import app.mvc.model.dto.Orders;
-import app.mvc.view.EndView;
-import app.mvc.view.FailView;
-
 public class AdminMenuController {
 	static AdminMenuService ams = new AdminMenuService();
 	

@@ -53,30 +53,28 @@ public class AdminMenuView {
 	 * 메뉴 등록 Process View
 	 */
 	public static void printInsertProcess() {
-		System.out.println("메뉴 이름을 입력하세요 : ");
+		System.out.print("메뉴 이름을 입력하세요 : ");
 		String menuName = sc.nextLine();
 		
-		System.out.println("가격을 입력하세요 : ");
+		System.out.print("가격을 입력하세요 : ");
 		int basicPrice = sc.nextInt();
 		sc.nextLine(); // 개행 문자 제거
 		
-		System.out.println("설명을 입력하세요 : ");
+		System.out.print("설명을 입력하세요 : ");
 		String description = sc.nextLine();
 		
-		System.out.println("현재 잔여 수량을 입력하세요 : ");
+		System.out.print("현재 잔여 수량을 입력하세요 : ");
 		int capacity = sc.nextInt();
 		sc.nextLine(); // 개행 문자 제거
 		
 		System.out.println("해당하는 카테고리 번호를 입력하세요.");
 		System.out.println("1. 커피	|	2. 논커피	|	3. 푸드");
+		System.out.print("카테고리 번호 : ");
 		int categoryNo = sc.nextInt();
 		
 		Menu menu = new Menu(menuName, basicPrice, description, capacity, categoryNo);
 		AdminMenuController.insertMenu(menu);
 		sc.nextLine(); // 개행 문자 제거 (다른 입력이 있을 경우 대비)
-		
-		System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
-		printAdminMenuManage();
 		
 	}//printInsertProcess
 	
@@ -84,26 +82,23 @@ public class AdminMenuView {
 	 * 메뉴 수정 Process View
 	 */
 	public static void printUpdateProcess() {
-		System.out.println("수정하려는 상품 번호를 입력하세요 : ");
+		System.out.print("수정하려는 상품 번호를 입력하세요 : ");
 		int menuNo = sc.nextInt();
 		sc.nextLine(); // 개행 문자 제거
 		
-		System.out.println("수정하려는 가격을 입력하세요 : ");
+		System.out.print("수정하려는 가격을 입력하세요 : ");
 		int basicPrice = sc.nextInt();
 		sc.nextLine(); // 개행 문자 제거
 		
-		System.out.println("수정하려는 설명을 입력하세요 : ");
+		System.out.print("수정하려는 설명을 입력하세요 : ");
 		String description = sc.nextLine();
 		
-		System.out.println("현재 잔여 수량을 수정하세요 : ");
+		System.out.print("현재 잔여 수량을 수정하세요 : ");
 		int capacity = sc.nextInt();
 		sc.nextLine(); // 개행 문자 제거
 		
 		Menu menu = new Menu(menuNo, basicPrice, description, capacity);
 		AdminMenuController.updateMenu(menu);
-		
-		System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
-		printAdminMenuManage();
 		
 	}//printUpdateProcess
 	
@@ -111,7 +106,7 @@ public class AdminMenuView {
 	 * 메뉴 삭제 Process View
 	 */
 	public static void printDeleteProcess() {
-		System.out.println("삭제하려는 상품 번호를 입력하세요 : ");
+		System.out.print("삭제하려는 상품 번호를 입력하세요 : ");
 		int menuNo = sc.nextInt();
 		sc.nextLine(); // 개행 문자 제거
 		
