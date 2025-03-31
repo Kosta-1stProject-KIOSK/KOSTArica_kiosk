@@ -1,5 +1,6 @@
 package com.kiosk.admin.model.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.kiosk.admin.model.dto.Stats;
@@ -7,11 +8,19 @@ import com.kiosk.admin.model.dto.Stats;
 public interface StatsDAO {
 
 	/**
-	 * 기간에 따른 매출 통계 조회
-	 * @param periodType (기간 일간, 주간, 월간)
-	 * @return 매출 통계 List
+	 * 제품 판매수 통계 조회 (일간)
 	 */
-	List<Stats> getSalesByMenu(String periodType);
+	public List<Stats> MenuSalesDaily() throws SQLException;
+	
+	/**
+	 * 제품 판매수 통계 조회 (주간)
+	 */
+	public List<Stats> MenuSalesWeekly() throws SQLException;
+	
+	/**
+	 * 제품 판매수 통계 조회 (월간)
+	 */
+	public List<Stats> MenuSalesMonthly() throws SQLException;
 	
 	
 	
