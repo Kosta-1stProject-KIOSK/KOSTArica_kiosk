@@ -1,24 +1,22 @@
 package com.kiosk.admin.model.dto;
 
-import java.time.LocalDate;
-
 /**
  * 쿠폰정보 coupon 테이블
  */
-public class CouponDTO {
+public class Coupon {
 
 	private int couponNo;
 	private String couponName;
     private int discount;
-    private LocalDate validFrom;
-    private LocalDate validUntil;
+    private String validFrom;
+    private String validUntil;
     private int isUsed;
     private String memberId;
     
     
     
     //constructor
-    public CouponDTO(int couponNo, String couponName, int discount, LocalDate validFrom, LocalDate validUntil, int isUsed, String memberId) {
+    public Coupon(int couponNo, String couponName, int discount, String validFrom, String validUntil, int isUsed, String memberId) {
 		super();
 		this.couponNo = couponNo;
 		this.couponName = couponName;
@@ -41,11 +39,11 @@ public class CouponDTO {
 	public int getDiscount() {return discount;}
 	public void setDiscount(int discount) {this.discount = discount;}
 	
-	public LocalDate getValidFrom() {return validFrom;}
-	public void setValidFrom(LocalDate validFrom) {this.validFrom = validFrom;}
+	public String getValidFrom() {return validFrom;}
+	public void setValidFrom(String validFrom) {this.validFrom = validFrom;}
 	
-	public LocalDate getValidUntil() {return validUntil;}
-	public void setValidUntil(LocalDate validUntil) {this.validUntil = validUntil;}
+	public String getValidUntil() {return validUntil;}
+	public void setValidUntil(String validUntil) {this.validUntil = validUntil;}
 	
 	public int getIsUsed() {return isUsed;}
 	public void setIsUsed(int isUsed) {this.isUsed = isUsed;}

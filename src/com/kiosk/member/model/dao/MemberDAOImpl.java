@@ -2,7 +2,7 @@ package com.kiosk.member.model.dao;
 
 import java.util.List;
 
-import com.kiosk.member.model.dto.MemberDTO;
+import com.kiosk.member.model.dto.Member;
 
 public class MemberDAOImpl implements MemberDAO {
 
@@ -12,7 +12,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * @return MemberDTO (회원 정보가 담긴 객체)
 	 */
 	@Override
-	public MemberDTO searchById(String memberId) {
+	public Member searchById(String memberId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -24,7 +24,7 @@ public class MemberDAOImpl implements MemberDAO {
      * @return 회원 목록(list)
      */
 	@Override
-	public List<MemberDTO> searchAll() {
+	public List<Member> searchAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -36,7 +36,7 @@ public class MemberDAOImpl implements MemberDAO {
      * @param member (등록할 회원정보가 담긴 객체 MemberDTO member)
      */
 	@Override
-	public void insert(MemberDTO member) {
+	public void insert(Member member) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -48,7 +48,7 @@ public class MemberDAOImpl implements MemberDAO {
      * @param member (수정할 회원 정보 MemberDTO member)
      */
 	@Override
-	public void update(MemberDTO member) {
+	public void update(Member member) {
 		// TODO Auto-generated method stub
 		
 	}
