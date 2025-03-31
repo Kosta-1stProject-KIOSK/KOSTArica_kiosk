@@ -22,6 +22,15 @@ public class Stats {
 		this.periodEnd = periodEnd;
 	}
 	
+	/**
+	 * 메뉴별 판매 수 통계에 사용
+	 */
+	public Stats(String menuName, int quantitySold) {
+		super();
+		this.menuName = menuName;
+		this.quantitySold = quantitySold;
+	}
+	
 	
 	//getter, setter
 	public String getMenuName() {
