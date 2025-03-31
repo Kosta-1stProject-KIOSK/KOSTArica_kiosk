@@ -1,32 +1,40 @@
 package com.kiosk.admin.model.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.kiosk.admin.model.dto.Coupon;
+import com.kiosk.admin.model.dto.Menu;
 
 public interface CouponDAO {
+	
+    /**
+     * 전체 메뉴 목록 조회
+     * @return 메뉴 리스트(List)
+     * @throws SQLException 
+     */
+    List<Coupon> searchAll() throws SQLException;
 
 	/**
 	 * 특정 회원이 가지고 있는 쿠폰 목록을 조회 
 	 * @param memberId (회원의 PK)
 	 * @return 해당 회원이 보유 중인 쿠폰 리스트(list)
 	 */
-	List<Coupon> searchByMember(String memberId);
+	List<Coupon> searchByMember(String memberId) throws SQLException;
 
 	
 	/**
-	 * 쿠폰번호(PK)로 쿠폰 정보를 조회
+	 * 쿠폰번호(PK)로 쿠폰 사용여부를 조회
 	 * @param couponNo (쿠폰번호, PK)
 	 * @return 쿠펀정보가 담긴 쿠폰객체 (CouponDTO)
 	 */
-	Coupon searchById(int couponNo);
-	
+	public int searchByCouponNo(int couponNo) throws SQLException;
 	
 	/**
 	 * 쿠폰 등록
 	 * @param coupon (CouponDTO coupon, 등록할 쿠폰 정보)
 	 */
-    void insert(Coupon coupon);
+    int insert(Coupon coupon) throws SQLException;
     
     
     /**
@@ -34,14 +42,14 @@ public interface CouponDAO {
      * @param couponNo
      * @param isUsed (true: 사용됨, false: 사용가능)
      */
-    void updateUsage(int couponNo, boolean isUsed);
+    int updateUsage(int couponNo, int isUsed) throws SQLException;
     
     
     /**
      * 쿠폰 삭제
      * @param couponNo (삭제할 쿠폰 번호)
      */
-    void delete(int couponNo);
+    int delete(int couponNo) throws SQLException;
 	
     
 }
