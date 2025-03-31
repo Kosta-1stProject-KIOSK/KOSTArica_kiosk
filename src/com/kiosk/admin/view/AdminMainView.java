@@ -28,8 +28,9 @@ public class AdminMainView {
 	 * 관리자 메인화면 메뉴를 출력하는 메소드
 	 */
 	public static void printAdminMain() {
-		System.out.println("========= KOSTArica Cafe '관리자모드'입니다. 메뉴를 선택하세요 =========");
-		System.out.println("1. 메뉴관리	| 2. 쿠폰관리	|	3.통계조회	|	0. 뒤로가기");
+		System.out.println("════════════════════════ KOSTArica Cafe '관리자모드'입니다. 메뉴를 선택하세요══════════════════════════════");
+		System.out.println("|	[1] 메뉴관리	| 	[2] 쿠폰관리	|	[3] 통계조회	|	[0] 뒤로가기	|");
+		System.out.println("═════════════════════════════════════════════════════════════════════════════════════════════════");
 	}// printMainMenu
 
 	/**

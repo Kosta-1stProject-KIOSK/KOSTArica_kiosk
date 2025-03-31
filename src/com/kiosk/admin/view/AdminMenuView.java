@@ -16,11 +16,16 @@ public class AdminMenuView {
 	 * 메뉴 관리 메인 화면 출력
 	 */
 	public static void printAdminMenuManage() {
-		System.out.println("========= 메뉴 관리 페이지입니다. 무엇을 하시겠습니까? =========");
+		System.out.println();
+		System.out.println();
+		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
+		System.out.println("				메뉴 관리 페이지입니다. 무엇을 하시겠습니까?");
+		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
+
 
 		while (true) {
-			System.out.println("---------------------------메뉴 관리--------------------------");
-			System.out.println("1. 조회	|	2. 등록	|	3.수정	|	4.삭제	|	0. 뒤로가기");
+			System.out.println("-------------------------------------------메뉴 관리----------------------------------------------");
+			System.out.println("    [1] 조회	  |     [2] 등록     |     [3] 수정     |     [4] 삭제     |    [0] 뒤로가기");
 			System.out.print("선택 > ");
 			int input = Integer.parseInt(sc.nextLine());
 
@@ -122,7 +127,7 @@ public class AdminMenuView {
 	 * @param list
 	 */
 	public static void printAllMenuList(List<Menu> list) {
-		System.out.println("-------------메뉴 " + list.size() + "개 -------------");
+		System.out.println("-----------------------------메뉴 " + list.size() + "개 ----------------------------");
 		for(Menu menu : list) {
 			System.out.println(menu);
 		}//end for
