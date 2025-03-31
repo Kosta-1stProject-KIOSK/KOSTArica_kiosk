@@ -2,7 +2,7 @@ package com.kiosk.admin.model.dao;
 
 import java.util.List;
 
-import com.kiosk.admin.model.dto.StatsDTO;
+import com.kiosk.admin.model.dto.Stats;
 
 public interface StatsDAO {
 
@@ -11,7 +11,7 @@ public interface StatsDAO {
 	 * @param periodType (기간 일간, 주간, 월간)
 	 * @return 매출 통계 List
 	 */
-	List<StatsDTO> getSalesByMenu(String periodType);
+	List<Stats> getSalesByMenu(String periodType);
 	
 	
 	
@@ -20,7 +20,7 @@ public interface StatsDAO {
      * @param limit (상위 개수 제한)
      * @return 인기 메뉴 리스트
      */
-    List<StatsDTO> getTopMenus(int limit);
+    List<Stats> getTopMenus(int limit);
 
     
     

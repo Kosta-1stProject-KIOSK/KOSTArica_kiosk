@@ -5,18 +5,18 @@ import java.time.LocalDate;
 /**
  * 회원정보 member 테이블
  */
-public class MemberDTO {
+public class Member {
 
 	private String memberID;
 	private String memberName;
-    private LocalDate birth;
-    private LocalDate joinDate;
+    private String birth;
+    private String joinDate;
     private int stampCount;
     
     
     
     //Constructor
-	public MemberDTO(String memberID, String memberName, LocalDate birth, LocalDate joinDate, int stampCount) {
+	public Member(String memberID, String memberName, String birth, String joinDate, int stampCount) {
 		super();
 		this.memberID = memberID;
 		this.memberName = memberName;
@@ -41,17 +41,17 @@ public class MemberDTO {
 		this.memberName = memberName;
 	}
 
-	public LocalDate getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(LocalDate birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 
-	public LocalDate getJoinDate() {
+	public String getJoinDate() {
 		return joinDate;
 	}
-	public void setJoinDate(LocalDate joinDate) {
+	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
 

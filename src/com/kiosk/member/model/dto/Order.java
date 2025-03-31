@@ -6,20 +6,20 @@ import java.util.List;
 /**
  * 주문정보 orders 테이블
  */
-public class OrderDTO {
+public class Order {
 	
 	private int orderNo;
-	private LocalDateTime orderTime;
+	private String orderTime;
     private int totalPrice;
     private boolean takeOut;
     private String memberId;
     private Integer couponNo;
-    private List<OrderDetailDTO> orderDetails;
+    private List<OrderDetail> orderDetails;
    
     
     //Constructor
-    public OrderDTO(int orderNo, LocalDateTime orderTime, int totalPrice, boolean takeOut, String memberId,
-    		Integer couponNo, List<OrderDetailDTO> orderDetails) {
+    public Order(int orderNo, String orderTime, int totalPrice, boolean takeOut, String memberId,
+    		Integer couponNo, List<OrderDetail> orderDetails) {
     	super();
     	this.orderNo = orderNo;
     	this.orderTime = orderTime;
@@ -40,10 +40,10 @@ public class OrderDTO {
 		this.orderNo = orderNo;
 	}
 
-	public LocalDateTime getOrderTime() {
+	public String getOrderTime() {
 		return orderTime;
 	}
-	public void setOrderTime(LocalDateTime orderTime) {
+	public void setOrderTime(String orderTime) {
 		this.orderTime = orderTime;
 	}
 
@@ -75,10 +75,10 @@ public class OrderDTO {
 		this.couponNo = couponNo;
 	}
 
-	public List<OrderDetailDTO> getOrderDetails() {
+	public List<OrderDetail> getOrderDetails() {
 		return orderDetails;
 	}
-	public void setOrderDetails(List<OrderDetailDTO> orderDetails) {
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
 

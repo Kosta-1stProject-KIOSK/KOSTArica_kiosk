@@ -2,7 +2,7 @@ package com.kiosk.member.model.dao;
 
 import java.util.List;
 
-import com.kiosk.member.model.dto.OrderDTO;
+import com.kiosk.member.model.dto.Order;
 
 public interface OrderDAO {
 	
@@ -10,7 +10,7 @@ public interface OrderDAO {
 	 * 주문 등록. 주문 상세 및 옵션 정보 포함.
 	 * @param order (등록할 주문 정도 OrderDTO order)
 	 */
-	void insert (OrderDTO order);
+	void insert (Order order);
 	
 	
 	
@@ -19,7 +19,7 @@ public interface OrderDAO {
      * @param orderNo 주문번호
      * @return 주문정보(OrderDTO)
      */
-    OrderDTO searchById(int orderNo);
+    Order searchById(int orderNo);
 
     
     
@@ -28,7 +28,7 @@ public interface OrderDAO {
      * @param memberId (회원번호)
      * @return 해당 회원의 주문 리스트(List<OrderDTO>)
      */
-    List<OrderDTO> searchByMember(String memberId);
+    List<Order> searchByMember(String memberId);
 
     
     
@@ -36,7 +36,7 @@ public interface OrderDAO {
      * 전체 주문 조회
      * @return 전체 주문 리스트(List<OrderDTO>)
      */
-    List<OrderDTO> searchAll();
+    List<Order> searchAll();
 
     
     

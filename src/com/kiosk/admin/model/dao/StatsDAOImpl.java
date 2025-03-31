@@ -2,7 +2,7 @@ package com.kiosk.admin.model.dao;
 
 import java.util.List;
 
-import com.kiosk.admin.model.dto.StatsDTO;
+import com.kiosk.admin.model.dto.Stats;
 
 public class StatsDAOImpl implements StatsDAO {
 	
@@ -12,7 +12,7 @@ public class StatsDAOImpl implements StatsDAO {
 	 * @return 매출 통계 List
 	 */
 	@Override
-	public List<StatsDTO> getSalesByMenu(String periodType) {
+	public List<Stats> getSalesByMenu(String periodType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,7 +25,7 @@ public class StatsDAOImpl implements StatsDAO {
      * @return 인기 메뉴 리스트
      */
 	@Override
-	public List<StatsDTO> getTopMenus(int limit) {
+	public List<Stats> getTopMenus(int limit) {
 		// TODO Auto-generated method stub
 		return null;
 	}

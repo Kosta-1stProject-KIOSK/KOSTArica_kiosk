@@ -2,7 +2,7 @@ package com.kiosk.admin.model.dao;
 
 import java.util.List;
 
-import com.kiosk.admin.model.dto.CouponDTO;
+import com.kiosk.admin.model.dto.Coupon;
 
 public interface CouponDAO {
 
@@ -11,7 +11,7 @@ public interface CouponDAO {
 	 * @param memberId (회원의 PK)
 	 * @return 해당 회원이 보유 중인 쿠폰 리스트(list)
 	 */
-	List<CouponDTO> searchByMember(String memberId);
+	List<Coupon> searchByMember(String memberId);
 
 	
 	/**
@@ -19,14 +19,14 @@ public interface CouponDAO {
 	 * @param couponNo (쿠폰번호, PK)
 	 * @return 쿠펀정보가 담긴 쿠폰객체 (CouponDTO)
 	 */
-	CouponDTO searchById(int couponNo);
+	Coupon searchById(int couponNo);
 	
 	
 	/**
 	 * 쿠폰 등록
 	 * @param coupon (CouponDTO coupon, 등록할 쿠폰 정보)
 	 */
-    void insert(CouponDTO coupon);
+    void insert(Coupon coupon);
     
     
     /**

@@ -2,7 +2,7 @@ package com.kiosk.admin.model.dao;
 
 import java.util.List;
 
-import com.kiosk.admin.model.dto.CouponDTO;
+import com.kiosk.admin.model.dto.Coupon;
 
 public class CouponDAOImpl implements CouponDAO{
 
@@ -12,7 +12,7 @@ public class CouponDAOImpl implements CouponDAO{
 	 * @return 해당 회원이 보유 중인 쿠폰 리스트(list)
 	 */
 	@Override
-	public List<CouponDTO> searchByMember(String memberId) {
+	public List<Coupon> searchByMember(String memberId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,7 +25,7 @@ public class CouponDAOImpl implements CouponDAO{
 	 * @return 쿠펀정보가 담긴 쿠폰객체 (CouponDTO)
 	 */
 	@Override
-	public CouponDTO searchById(int couponNo) {
+	public Coupon searchById(int couponNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -37,7 +37,7 @@ public class CouponDAOImpl implements CouponDAO{
 	 * @param coupon (CouponDTO coupon, 등록할 쿠폰 정보)
 	 */
 	@Override
-	public void insert(CouponDTO coupon) {
+	public void insert(Coupon coupon) {
 		// TODO Auto-generated method stub
 		
 	}
