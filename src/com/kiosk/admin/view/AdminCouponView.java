@@ -18,11 +18,15 @@ public class AdminCouponView {
 	 * 쿠폰 관리 메인 화면 출력
 	 */
 	public static void printAdminCouponManage() {
-		System.out.println("========= 쿠폰 관리 페이지입니다. 무엇을 하시겠습니까? =========");
+		System.out.println();
+		System.out.println();
+		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
+		System.out.println("				쿠폰 관리 페이지입니다. 무엇을 하시겠습니까?");
+		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
 
 		while (true) {
-			System.out.println("---------------------------쿠폰 관리--------------------------");
-			System.out.println("1. 전체 조회	|	2. 회원별 조회	|	3. 발행	|	4.사용여부 갱신	|	5.삭제	|	0. 뒤로가기");
+			System.out.println("-------------------------------------------쿠폰 관리----------------------------------------------");
+			System.out.println("  [1] 전체 조회	|  [2] 회원별 조회  |   [3] 발행   |  [4] 사용여부 갱신  |   [5] 삭제   |  [0] 뒤로가기");
 			System.out.print("선택 > ");
 			int input = Integer.parseInt(sc.nextLine());
 
@@ -148,7 +152,7 @@ public class AdminCouponView {
 	 * 조회 시 쿠폰 리스트 출력 - 전체, 회원별
 	 */
 	public static void printAllCouponList(List<Coupon> list, boolean isMemberView) {
-		System.out.println("-------------전체 쿠폰 " + list.size() + "개 -------------");
+		System.out.println("-------------------------------전체 쿠폰 " + list.size() + "개 ---------------------------------");
 		for(Coupon coupon : list) {
 			if(isMemberView) { //회원별 조회일 경우
 				System.out.println(coupon.toStringForSearchByMember());
