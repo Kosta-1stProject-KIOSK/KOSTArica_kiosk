@@ -13,10 +13,10 @@ import com.kiosk.util.DBManager;
 public class StatsDAOImpl implements StatsDAO {
 	
 	/**
-	 * 제품 판매수 통계 조회 (일간)
+	 * 메뉴 판매수 통계 조회 (일간)
 	 */
 	@Override
-	public List<Stats> MenuSalesDaily() throws SQLException {
+	public List<Stats> menuSalesDaily() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -29,7 +29,7 @@ public class StatsDAOImpl implements StatsDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Stats stats = new Stats(rs.getString(2), rs.getInt(3));
+				Stats stats = new Stats(rs.getInt(1), rs.getString(2), rs.getInt(3));
 				
 				list.add(stats);
 			}//end while
@@ -45,7 +45,7 @@ public class StatsDAOImpl implements StatsDAO {
 	 * 제품 판매수 통계 조회 (주간)
 	 */
 	@Override
-	public List<Stats> MenuSalesWeekly() throws SQLException {
+	public List<Stats> menuSalesWeekly() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -58,7 +58,7 @@ public class StatsDAOImpl implements StatsDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Stats stats = new Stats(rs.getString(2), rs.getInt(3));
+				Stats stats = new Stats(rs.getInt(1), rs.getString(2), rs.getInt(3));
 				
 				list.add(stats);
 			}//end while
@@ -74,7 +74,7 @@ public class StatsDAOImpl implements StatsDAO {
 	 * 제품 판매수 통계 조회 (월간)
 	 */
 	@Override
-	public List<Stats> MenuSalesMonthly() throws SQLException {
+	public List<Stats> menuSalesMonthly() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -87,7 +87,63 @@ public class StatsDAOImpl implements StatsDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Stats stats = new Stats(rs.getString(2), rs.getInt(3));
+				Stats stats = new Stats(rs.getInt(1), rs.getString(2), rs.getInt(3));
+				
+				list.add(stats);
+			}//end while
+			
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		}//end finally
+		
+		return list;
+	}
+	
+	/**
+	 * 시간별 주문수 통계 조회 (일간)
+	 */
+	public List<Stats> salesTimeDaily() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select * from sales_time_daily"; 
+				
+		List<Stats> list = new ArrayList<Stats>();
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Stats stats = new Stats(rs.getInt(1), rs.getInt(2));
+				
+				list.add(stats);
+			}//end while
+			
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		}//end finally
+		
+		return list;
+	}
+	
+	/**
+	 * 시간별 주문수 통계 조회 (주간)
+	 */
+	public List<Stats> salesTimeWeekly() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select * from sales_time_weekly"; 
+				
+		List<Stats> list = new ArrayList<Stats>();
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Stats stats = new Stats(rs.getInt(1), rs.getInt(2));
 				
 				list.add(stats);
 			}//end while
@@ -115,15 +171,92 @@ public class StatsDAOImpl implements StatsDAO {
 	
 	
 	/**
-     * 전체 총 매출 금액 반환
-     * @return 총 매출 금액
-     */
+	 * 전체 총 매출 금액 반환
+	 * @return 총 매출 금액
+	 */
 	@Override
-	public int getTotalSales() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public Stats getTotalSales() throws SQLException {
 
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Stats stats = null; //초기에 null로 설정
+		
+		String sql = "select * from total_sales";
+
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				stats = new Stats(rs.getInt(1), rs.getInt(2), rs.getInt(3));
+			}//end if
+
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		} // end finally
+
+		return stats;
+	}
+	
+	/**
+	 * 지난 매출 비교 통계 조회 (주간)
+	 */
+	public Stats salesCompareWeekly() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Stats stats = null; //초기에 null로 설정
+		
+		String sql = "select * from sales_compare_weekly";
+
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				stats = new Stats(rs.getInt(1), rs.getInt(2));
+			}//end if
+
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		} // end finally
+
+		return stats;
+	}
+	
+	
+	/**
+	 * 지난 매출 비교 통계 조회 (월간)
+	 */
+	public Stats salesCompareMonthly() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Stats stats = null; //초기에 null로 설정
+		
+		String sql = "select * from sales_compare_monthly";
+
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				stats = new Stats(rs.getInt(1), rs.getInt(2));
+			}//end if
+
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		} // end finally
+
+		return stats;
+	}
 	
 	
 	/**
