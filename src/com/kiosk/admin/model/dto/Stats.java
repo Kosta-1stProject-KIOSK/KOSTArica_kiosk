@@ -1,21 +1,19 @@
 package com.kiosk.admin.model.dto;
 
-import java.time.LocalDateTime;
-
 /**
  * 통계 분석용 DTO
  */
-public class StatsDTO {
+public class Stats {
 
 	private String menuName;
 	private int totalSales;
     private int quantitySold;
-    private LocalDateTime periodStart;
-    private LocalDateTime periodEnd;
+    private String periodStart;
+    private String periodEnd;
     
-    public StatsDTO() {}
-	public StatsDTO(String menuName, int totalSales, int quantitySold, LocalDateTime periodStart,
-			LocalDateTime periodEnd) {
+    public Stats() {}
+	public Stats(String menuName, int totalSales, int quantitySold, String periodStart,
+			String periodEnd) {
 		super();
 		this.menuName = menuName;
 		this.totalSales = totalSales;
@@ -47,17 +45,17 @@ public class StatsDTO {
 		this.quantitySold = quantitySold;
 	}
 	
-	public LocalDateTime getPeriodStart() {
+	public String getPeriodStart() {
 		return periodStart;
 	}
-	public void setPeriodStart(LocalDateTime periodStart) {
+	public void setPeriodStart(String periodStart) {
 		this.periodStart = periodStart;
 	}
 	
-	public LocalDateTime getPeriodEnd() {
+	public String getPeriodEnd() {
 		return periodEnd;
 	}
-	public void setPeriodEnd(LocalDateTime periodEnd) {
+	public void setPeriodEnd(String periodEnd) {
 		this.periodEnd = periodEnd;
 	}
 	

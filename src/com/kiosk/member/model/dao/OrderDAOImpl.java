@@ -2,7 +2,7 @@ package com.kiosk.member.model.dao;
 
 import java.util.List;
 
-import com.kiosk.member.model.dto.OrderDTO;
+import com.kiosk.member.model.dto.Order;
 
 public class OrderDAOImpl implements OrderDAO {
 
@@ -11,7 +11,7 @@ public class OrderDAOImpl implements OrderDAO {
 	 * @param order (등록할 주문 정도 OrderDTO order)
 	 */
 	@Override
-	public void insert(OrderDTO order) {
+	public void insert(Order order) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -24,7 +24,7 @@ public class OrderDAOImpl implements OrderDAO {
      * @return 주문정보(OrderDTO)
      */
 	@Override
-	public OrderDTO searchById(int orderNo) {
+	public Order searchById(int orderNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -37,7 +37,7 @@ public class OrderDAOImpl implements OrderDAO {
      * @return 해당 회원의 주문 리스트(List<OrderDTO>)
      */
 	@Override
-	public List<OrderDTO> searchByMember(String memberId) {
+	public List<Order> searchByMember(String memberId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,7 +49,7 @@ public class OrderDAOImpl implements OrderDAO {
      * @return 전체 주문 리스트(List<OrderDTO>)
      */
 	@Override
-	public List<OrderDTO> searchAll() {
+	public List<Order> searchAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
