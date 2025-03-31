@@ -85,10 +85,30 @@ public class MenuDAOImpl implements MenuDAO {
      * @param 등록할 메뉴 정보(MenuDTO menu)
      */
 	@Override
-	public void insert(Menu menu) {
-		// TODO Auto-generated method stub
+	public int insert(Menu menu) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "insert into menu(menu_name, basic_price, description, capacity, category_no) values(?, ?, ?, ?, ?);"; 
+
+		int result = 0;
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, menu.getMenuName());
+			ps.setInt(2, menu.getBasicPrice());
+			ps.setString(3, menu.getDescription());
+			ps.setInt(4, menu.getCapacity());
+			ps.setInt(5, menu.getCategoryNo());
+			
+			result = ps.executeUpdate();
+			
+		} finally {
+			DBManager.dbClose(con, ps);
+		}//end finally
 		
-	}
+		return result;
+	}//insert
 
 	
 	
@@ -97,8 +117,30 @@ public class MenuDAOImpl implements MenuDAO {
      * @param 수정할 메뉴 정보 객체(MenuDTO menu)
      */
 	@Override
-	public void update(Menu menu) {
-		// TODO Auto-generated method stub
+	public int update(Menu menu) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "update menu	"
+				+ "set basic_price = ?, description = ?, capacity = ?	"
+				+ "where menu_no = ?"; 
+
+		int result = 0;
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, menu.getBasicPrice());
+			ps.setString(2, menu.getDescription());
+			ps.setInt(3, menu.getCapacity());
+			ps.setInt(4, menu.getMenuNo());
+			
+			result = ps.executeUpdate();
+			
+		} finally {
+			DBManager.dbClose(con, ps);
+		}//end finally
+		
+		return result;
 		
 	}
 
@@ -109,9 +151,26 @@ public class MenuDAOImpl implements MenuDAO {
      * @param menuNo 삭제할 메뉴 번호
      */
 	@Override
-	public void delete(int menuNo) {
-		// TODO Auto-generated method stub
+	public int delete(int menuNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "delete from menu	"
+				+ "where menu_no = ?"; 
+
+		int result = 0;
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, menuNo);
+			
+			result = ps.executeUpdate();
+			
+		} finally {
+			DBManager.dbClose(con, ps);
+		}//end finally
 		
+		return result;
 	}
 
 }
