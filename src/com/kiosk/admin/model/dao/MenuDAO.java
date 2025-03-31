@@ -38,7 +38,7 @@ public interface MenuDAO {
      * 메뉴 등록
      * @param 등록할 메뉴 정보(MenuDTO menu)
      */
-    void insert(Menu menu);
+    int insert(Menu menu) throws SQLException;
 
     
     
@@ -46,15 +46,16 @@ public interface MenuDAO {
      * 메뉴 정보 수정
      * @param 수정할 메뉴 정보 객체(MenuDTO menu)
      */
-    void update(Menu menu);
+    int update(Menu menu) throws SQLException;
 
     
     
     /**
      * 메뉴 삭제
      * @param menuNo 삭제할 메뉴 번호
+     * @return 
      */
-    void delete(int menuNo);
+    int delete(int menuNo) throws SQLException;
     
     
 }

@@ -18,6 +18,9 @@ public class Menu {
     
     
     //Constructor
+	/**
+	 * 메뉴 조회 시 사용
+	 */
 	public Menu(int menuNo, String menuName, int basicPrice, String description, String inputDate,
 			int capacity, int isActive, String categoryName) {
 		super();
@@ -46,6 +49,29 @@ public class Menu {
 		this.categoryName = categoryName;
 	}
 
+	//생성자
+	/**
+	 * 메뉴 등록 시 사용
+	 */
+	public Menu(String menuName, int basicPrice, String description, int capacity, int categoryNo) {
+		super();
+		this.menuName = menuName;
+		this.basicPrice = basicPrice;
+		this.description = description;
+		this.capacity = capacity;
+		this.categoryNo = categoryNo;
+	}
+	
+	/**
+	 * 메뉴 수정 시 사용
+	 */
+	public Menu(int menuNo, int basicPrice, String description, int capacity) {
+		super();
+		this.menuNo = menuNo;
+		this.basicPrice = basicPrice;
+		this.description = description;
+		this.capacity = capacity;
+	}
 
 	//getter, setter
 	public int getMenuNo() {
@@ -135,6 +161,4 @@ public class Menu {
 		builder.append(categoryName);
 		return builder.toString();
 	}
-	
-   
 }
