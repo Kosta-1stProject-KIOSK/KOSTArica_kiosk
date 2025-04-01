@@ -1,5 +1,6 @@
 package com.kiosk.admin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kiosk.admin.model.dto.Coupon;
@@ -14,31 +15,46 @@ public class AdminCouponController {
 	/**
 	 * 전체 쿠폰 조회
 	 */
-	public static void searchAll() {
+	public static void searchAll(boolean showMenuAfter) { //finally를 보여줄지 말지 여부 결정
 		try {
 			List<Coupon> coupon = acs.searchAll();
 			AdminCouponView.printAllCouponList(coupon, false);
 		} catch (Exception e) {
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
+			if(showMenuAfter) { // 플래그가 true일 때만 돌아가기
 			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
+			}
 		}//end finally
 	}//searchAll
 	
 	/**
 	 * 회원별 쿠폰 조회
+	 * @return 
 	 */
-	public static void searchByMember(String memberId) {
+	public static List<Coupon> searchByMember(String memberId) {
+		List<Coupon> couponList = new ArrayList<>(); // 기본 반환값 설정
+		
 		try {
 			List<Coupon> coupon = acs.searchByMember(memberId);
+			
+			 // 조회된 쿠폰이 없으면 바로 종료
+	        if (coupon == null || coupon.isEmpty()) {
+	            return new ArrayList<>();
+	        }
+	        
 			AdminCouponView.printAllCouponList(coupon, true);
+			
 		} catch (Exception e) {
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
 			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
 		}//end finally
+		
+		return couponList; // 예외 발생 시에도 반환값을 보장
+		
 	}//searchByMember
 	
 	
