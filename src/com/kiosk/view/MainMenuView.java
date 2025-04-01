@@ -18,8 +18,8 @@ public class MainMenuView implements ConsoleColor {
 	 */
 	public static void mainMenu() {
 		while(true) {
-			System.out.println("▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
-	        System.out.println(bBROWN+"									      ");
+			System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
+	        System.out.println(bBROWN+tYELLOW+"									      ");
 			System.out.println(" ██╗  ██╗ ██████╗ ███████╗████████╗ █████╗ ██████╗ ██╗ ██████╗ █████╗ ");
 	        System.out.println(" ██║ ██╔╝██╔═══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║██╔════╝██╔══██╗");
 	        System.out.println(" █████╔╝ ██║   ██║███████╗   ██║   ███████║██████╔╝██║██║     ███████║");
@@ -27,7 +27,7 @@ public class MainMenuView implements ConsoleColor {
 	        System.out.println(" ██║  ██╗╚██████╔╝███████║   ██║   ██║  ██║██║	██╗██║╚██████╗██║  ██║");
 	        System.out.println(" ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝");
 	        System.out.println("								      "+RESET);
-			System.out.println("▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
+			System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃"+RESET);
 
 	        System.out.println(tCREAM+"        ⠀⠀⠀⠀⠀⠀⠀⠀⠀          ⡀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
 	        System.out.println("                  ⠀⠀⠀⠀⠀⠀⠀⢜⢕⡝⣜⢭⢫⠒⡠⣴⣲⢯⡿⣽⠻⢓⣀⡀⠀⠀⠀");
@@ -81,7 +81,7 @@ public class MainMenuView implements ConsoleColor {
 		System.out.println(BOLD+"╔══════════════════════════════════════════════════════════════════════╗\r\n"
 				+ " 		    KOSTArica Cafe 입니다. 입장하시겠습니까?\r\n"
 				+ "╚══════════════════════════════════════════════════════════════════════╝");
-		System.out.println(bWHITE + tBLACK + "      1. 카페이용하기       |       2. 관리자모드       |       0. 종료		"+RESET);
+		System.out.println(bWHITE + tBLACK + "      1. 카페 이용하기       |       2. 관리자모드       |       0. 종료		"+RESET);
 	}//printMainMenu
 	
 	/**
