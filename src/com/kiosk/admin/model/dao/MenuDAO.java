@@ -50,12 +50,24 @@ public interface MenuDAO {
 
     
     
-    /**
-     * 메뉴 삭제
-     * @param menuNo 삭제할 메뉴 번호
-     * @return 
-     */
-    int delete(int menuNo) throws SQLException;
-    
+	/**
+	 * 메뉴 삭제
+	 * @param menuNo 삭제할 메뉴 번호
+	 * @return
+	 */
+	int delete(int menuNo) throws SQLException;
+
+	////////////////////////////전체 메인 화면 용//////////////////////////
+
+	/**
+	 * 신메뉴명 5개 조회
+	 */
+	public List<String> searchNewMenu() throws SQLException;
+	
+	/**
+	 * 베스트 메뉴명 5개 조회
+	 */
+	public List<String> searchBestMenu() throws SQLException;
+
     
 }
