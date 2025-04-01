@@ -49,7 +49,7 @@ public class MenuDAOImpl implements MenuDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String sql = "select menu_no, menu_name, basic_price, description, input_date, capacity,  is_active, category_name	"
-				+ "from menu join category using(category_no);"; 
+				+ "from menu join category using(category_no)"; 
 				
 		List<Menu> list = new ArrayList<Menu>();
 		try {
@@ -88,7 +88,7 @@ public class MenuDAOImpl implements MenuDAO {
 	public int insert(Menu menu) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql = "insert into menu(menu_name, basic_price, description, capacity, category_no) values(?, ?, ?, ?, ?);"; 
+		String sql = "insert into menu(menu_name, basic_price, description, capacity, category_no) values(?, ?, ?, ?, ?)"; 
 
 		int result = 0;
 		try {
@@ -172,5 +172,69 @@ public class MenuDAOImpl implements MenuDAO {
 		
 		return result;
 	}
+	
+	////////////////////////////전체 메인 화면 용//////////////////////////
+	
+	/**
+     * 신메뉴명 3개 조회
+     */
+	@Override
+	public List<String> searchNewMenu() throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select menu_name	"
+				+ "from menu	" 
+				+ "order by input_date desc limit 3 ";
+				
+		List<String> list = new ArrayList<String>();
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+					String menu = rs.getString(1);
+				list.add(menu);
+			}//end while
+			
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		}//end finally
+		
+		return list;
+	}//searchNewMenu
+	
+	/**
+     * 베스트 메뉴명 3개 조회
+     */
+	@Override
+	public List<String> searchBestMenu() throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "SELECT m.menu_name, SUM(od.quantity) AS total_quantity	"
+				+ "FROM order_detail od	" 
+				+ "JOIN menu m ON od.menu_no = m.menu_no	" 
+				+ "GROUP BY m.menu_no, m.menu_name	" 
+				+ "ORDER BY SUM(od.quantity) DESC	LIMIT 3";
+				
+		List<String> list = new ArrayList<String>();
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+					String menu = rs.getString(1);
+				list.add(menu);
+			}//end while
+			
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		}//end finally
+		
+		return list;
+	}//searchBestMenu
 
 }
