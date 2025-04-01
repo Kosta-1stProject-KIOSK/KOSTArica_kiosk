@@ -142,7 +142,7 @@ public class InputValid implements ConsoleColor{
 
         while (true) {
             // 년도 입력
-            System.out.print("▶ " + dateType + " 년도(4자리): ");
+            System.out.print(dateType + " 년도(4자리): ");
             year = scanner.nextLine().trim();
             if (year.isEmpty()) {
                 System.out.println(tRED + "▶ 년도는 4자리 숫자여야 합니다." + RESET);
@@ -155,7 +155,7 @@ public class InputValid implements ConsoleColor{
 
             // 월 입력
             while (true) {
-                System.out.print("▶ " + dateType + " 월: ");
+                System.out.print(dateType + " 월: ");
                 month = scanner.nextLine().trim();
                 if (month.isEmpty()) {
                     System.out.println(tRED + "▶ 월은 01에서 12 사이의 숫자여야 합니다." + RESET);
@@ -173,7 +173,7 @@ public class InputValid implements ConsoleColor{
 
             // 일 입력
             while (true) {
-                System.out.print("▶ " + dateType + " 일: ");
+                System.out.print(dateType + " 일: ");
                 day = scanner.nextLine().trim();
                 if (day.isEmpty()) {
                     System.out.println(tRED + "▶ 일은 01에서 31 사이의 숫자여야 합니다." + RESET);

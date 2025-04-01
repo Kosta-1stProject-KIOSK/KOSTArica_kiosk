@@ -7,8 +7,9 @@ import com.kiosk.admin.model.dao.StatsDAO;
 import com.kiosk.admin.model.dao.StatsDAOImpl;
 import com.kiosk.admin.model.dto.Stats;
 import com.kiosk.exception.NotFoundException;
+import com.kiosk.view.ConsoleColor;
 
-public class AdminStatsService {
+public class AdminStatsService implements ConsoleColor{
 	StatsDAO statsDao = new StatsDAOImpl();
 	
     /**
@@ -30,7 +31,7 @@ public class AdminStatsService {
 		}
 		
 		if(list.size()==0)
-			throw new NotFoundException("현재 통계를 낼 수 없습니다.");
+			throw new NotFoundException(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		
 		return list;
 	}//MenuSales
@@ -42,7 +43,7 @@ public class AdminStatsService {
 		Stats stats = statsDao.getTotalSales();
 		
 		if(stats == null)
-			throw new NotFoundException("현재 통계를 낼 수 없습니다.");
+			throw new NotFoundException(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		
 		return stats;
 	}
@@ -63,7 +64,7 @@ public class AdminStatsService {
 		}
 		
 		if(list.size()==0)
-			throw new NotFoundException("현재 통계를 낼 수 없습니다.");
+			throw new NotFoundException(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		
 		return list;
 	}//SalesTime
@@ -84,7 +85,7 @@ public class AdminStatsService {
 		}
 		
 		if(stats == null)
-			throw new NotFoundException("현재 판매된 메뉴가 없습니다.");
+			throw new NotFoundException(tRED + "▶ 현재 판매된 메뉴가 없습니다." + RESET);
 		
 		return stats;
 	}//salesCompare

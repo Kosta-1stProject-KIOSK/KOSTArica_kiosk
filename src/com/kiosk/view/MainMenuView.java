@@ -70,7 +70,9 @@ public class MainMenuView implements ConsoleColor {
 				System.exit(0); //콘솔 종료
 				break;
 		    default:
-		        System.out.println(tRED + "⚠ 올바른 숫자를 입력하세요! (1, 2, 0 중 선택)" + RESET);
+		    	System.out.println();
+		        System.out.println(tRED + "▶ 올바른 숫자를 입력하세요! (1, 2, 0 중 선택)" + RESET);
+		        System.out.println();
 		        break;
 			}//end switch
 			

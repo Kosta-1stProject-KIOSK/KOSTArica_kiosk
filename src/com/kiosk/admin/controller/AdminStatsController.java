@@ -20,7 +20,8 @@ public class AdminStatsController {
 		} catch (Exception e) {
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 통계 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
 			AdminStatsView.printAdminStatsManage();
 		}//end finally
 	}//MenuSales
@@ -35,7 +36,8 @@ public class AdminStatsController {
 		} catch (Exception e) {
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 통계 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
 			AdminStatsView.printAdminStatsManage();
 		}
 	}
@@ -50,7 +52,8 @@ public class AdminStatsController {
 		} catch (Exception e) {
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 통계 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
 			AdminStatsView.printAdminStatsManage();
 		}//end finally
 	}//MenuSales
@@ -65,7 +68,8 @@ public class AdminStatsController {
 		} catch (Exception e) {
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 통계 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
 			AdminStatsView.printAdminStatsManage();
 		}//end finally
 	}//MenuSales
