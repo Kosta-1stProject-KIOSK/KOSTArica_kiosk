@@ -9,10 +9,11 @@ import java.util.Scanner;
 import com.kiosk.member.model.dao.MenuDAO;
 import com.kiosk.member.model.dao.MenuDAOImpl;
 import com.kiosk.member.model.dto.Menu;
+import com.kiosk.view.ConsoleColor;
 import com.kiosk.exception.MenuNotFoundException;
 import com.kiosk.exception.NotFoundException;
 
-public class MenuSelectService {
+public class MenuSelectService implements ConsoleColor {
 
 	private final MenuDAO menuDao = new MenuDAOImpl();
 	private final Scanner sc = new Scanner(System.in);
@@ -28,11 +29,21 @@ public class MenuSelectService {
 		
 		while(true) {
 			try {
-				
 				System.out.println("\n".repeat(10));
 				
+				System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
+		        System.out.println(bBROWN+tYELLOW+"									      ");
+				System.out.println(" ██╗  ██╗ ██████╗ ███████╗████████╗ █████╗ ██████╗ ██╗ ██████╗ █████╗ ");
+		        System.out.println(" ██║ ██╔╝██╔═══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║██╔════╝██╔══██╗");
+		        System.out.println(" █████╔╝ ██║   ██║███████╗   ██║   ███████║██████╔╝██║██║     ███████║");
+		        System.out.println(" ██╔═██╗ ██║   ██║╚════██║   ██║   ██╔══██║██╔═██╗ ██║██║     ██╔══██║");
+		        System.out.println(" ██║  ██╗╚██████╔╝███████║   ██║   ██║  ██║██║	██╗██║╚██████╗██║  ██║");
+		        System.out.println(" ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝");
+		        System.out.println("								      "+RESET);
+System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃"+RESET);
 				
-				System.out.println("카테고리 변경 [A: 커피 / B: 음료 / C: 푸드]");
+		System.out.println(bWHITE + tBLACK + 
+                           "   A. Coffee            |   B. Non-Coffee      |   C. Food		"+RESET);
 				List<Menu> menus = printMenuByCategory(currentCategory);
 				
 				System.out.println("주문하실 메뉴의 [번호]를 입력해주세요.");

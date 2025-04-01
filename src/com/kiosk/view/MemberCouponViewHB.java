@@ -193,12 +193,20 @@ public class MemberCouponViewHB {
         // 결제로 이동
         System.out.println("\n결제를 진행합니다...");
         try {
-            Thread.sleep(500);
+            Thread.sleep(1500);
             System.out.println(".");
             Thread.sleep(1000);
             System.out.println(". .");
-            Thread.sleep(500);
+            Thread.sleep(700);
             System.out.println(". . .");
+            Thread.sleep(1100);
+            System.out.println(". . . .");
+            Thread.sleep(700);
+            System.out.println(". . .");
+            Thread.sleep(700);
+            System.out.println(". .");
+            Thread.sleep(500);
+            System.out.println(".");
         } catch (InterruptedException e) {
             // 무시
         }
