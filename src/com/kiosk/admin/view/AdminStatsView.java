@@ -21,8 +21,8 @@ public class AdminStatsView {
 
 
 		while (true) {
-			System.out.println("-------------------------------------------통계 관리----------------------------------------------");
-			System.out.println("    [1] 메뉴별 판매 수	  |     [2] 총매출     |     [3] 시간대별 주문 수     |     [4] 지난 매출과 비교     |    [0] 뒤로가기");
+			System.out.println("--------------------------------------------통계 관리----------------------------------------------");
+			System.out.println("  [1] 메뉴별 판매 수 |    [2] 총매출    |    [3] 시간대별 주문 수    |   [4] 지난 매출과 비교    |   [0] 뒤로가기");
 			System.out.print("선택 > ");
 			int input = Integer.parseInt(sc.nextLine());
 
@@ -58,7 +58,7 @@ public class AdminStatsView {
 	 */
 	public static void printMenuSalesProcess() {
 		System.out.println("-------------------------------------------메뉴별 판매 수----------------------------------------------");
-		System.out.println("    [1] 일간 조회	  |     [2] 주간 조회     |     [3] 월간 조회     |     [0] 뒤로가기");
+		System.out.println("	[1] 일간 조회	|	[2] 주간 조회	|	[3] 월간 조회	|	[0] 뒤로가기");
 		System.out.print("선택 > ");
 		int input = Integer.parseInt(sc.nextLine());
 		
@@ -73,8 +73,8 @@ public class AdminStatsView {
 	 * 시간대별 주문수  Process View
 	 */
 	public static void printSalesTimeProcess() {
-		System.out.println("-------------------------------------------시간대별 주문 수----------------------------------------------");
-		System.out.println("    [1] 일간 조회	  |     [2] 주간 조회     |     [0] 뒤로가기");
+		System.out.println("-------------------------------------------시간대별 주문 수-------------------------------------------");
+		System.out.println("    	[1] 일간 조회		  |  	   [2] 주간 조회  	   |   	  [0] 뒤로가기");
 		System.out.print("선택 > ");
 		int input = Integer.parseInt(sc.nextLine());
 		
