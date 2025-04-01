@@ -8,8 +8,9 @@ import com.kiosk.admin.service.AdminCouponService;
 import com.kiosk.admin.view.AdminCouponView;
 import com.kiosk.admin.view.AdminFailView;
 import com.kiosk.admin.view.AdminMenuView;
+import com.kiosk.view.ConsoleColor;
 
-public class AdminCouponController {
+public class AdminCouponController implements ConsoleColor {
 	static AdminCouponService acs = new AdminCouponService();
 	
 	/**
@@ -20,10 +21,12 @@ public class AdminCouponController {
 			List<Coupon> coupon = acs.searchAll();
 			AdminCouponView.printAllCouponList(coupon, false);
 		} catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
 			if(showMenuAfter) { // 플래그가 true일 때만 돌아가기
-			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
 			}
 		}//end finally
@@ -47,9 +50,11 @@ public class AdminCouponController {
 			AdminCouponView.printAllCouponList(coupon, true);
 			
 		} catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
 		}//end finally
 		
@@ -64,11 +69,14 @@ public class AdminCouponController {
 	public static void insertCoupon(Coupon coupon) {
 		try {
 			int result = acs.insertCoupon(coupon);
-			AdminCouponView.printMessage(result + "건 등록되었습니다!");
+			System.out.println();
+			AdminCouponView.printMessage(tGREEN + "▶ " + result + "건 등록되었습니다!" + RESET);
 		}catch (Exception e) {
-			AdminFailView.errorMessage(e.getMessage());
+			System.out.println();
+			AdminFailView.errorMessage(tRED + "▶ 존재하지 않는 회원입니다." + RESET);
 		} finally {
-			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
 		}//end finally
 	}//insertMenu
@@ -90,6 +98,7 @@ public class AdminCouponController {
 			return couponStatus; //현재 상태를 return
 			
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 			return null;
 		}
@@ -101,11 +110,14 @@ public class AdminCouponController {
 	public static void updateCoupon(int couponNo) {
 		try {
 			int result = acs.updateCoupon(couponNo);
-			AdminCouponView.printMessage(result + "건 수정되었습니다!");
+			System.out.println();
+			AdminCouponView.printMessage(tGREEN + "▶ " + result + "건 수정되었습니다!" + RESET);
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
 		}//end finally
 	}//updateMenu
@@ -116,11 +128,14 @@ public class AdminCouponController {
 	public static void deleteCoupon(int couoponNo) {
 		try {
 			int result = acs.deleteCoupon(couoponNo);
-			AdminCouponView.printMessage(result + "건 삭제되었습니다!");
+			System.out.println();
+			AdminCouponView.printMessage(tGREEN + "▶ " + result + "건 삭제되었습니다!" + RESET);
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 쿠폰 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 쿠폰 관리 화면으로 돌아갑니다.");
 			AdminCouponView.printAdminCouponManage();
 		}//end finally
 	}//deleteCoupon
