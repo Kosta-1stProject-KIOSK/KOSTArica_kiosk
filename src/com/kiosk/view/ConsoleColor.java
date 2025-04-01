@@ -1,4 +1,5 @@
 package com.kiosk.view;
+
 /**
  * 콘솔 출력을 위한 변수 인터페이스
  */
