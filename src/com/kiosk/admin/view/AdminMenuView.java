@@ -9,11 +9,12 @@ import com.kiosk.admin.controller.AdminCouponController;
 import com.kiosk.admin.controller.AdminMenuController;
 import com.kiosk.admin.model.dto.Menu;
 import com.kiosk.util.InputValid;
+import com.kiosk.view.ConsoleColor;
 
 /**
  * 관리자모드 > 메인 화면 > 메뉴 관리 View
  */
-public class AdminMenuView {
+public class AdminMenuView implements ConsoleColor{
 	private static Scanner sc = new Scanner(System.in);
 	
 	/**
@@ -22,16 +23,16 @@ public class AdminMenuView {
 	public static void printAdminMenuManage() {
 		System.out.println();
 		System.out.println();
-		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
-		System.out.println("				메뉴 관리 페이지입니다. 무엇을 하시겠습니까?");
-		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
-
 
 		while (true) {
-			System.out.println("-------------------------------------------메뉴 관리----------------------------------------------");
-			System.out.println("    [1] 조회	  |     [2] 등록     |     [3] 수정     |     [4] 삭제     |    [0] 뒤로가기");
-			System.out.print("선택 > ");
-			int input = Integer.parseInt(sc.nextLine());
+			System.out.println();
+			System.out.println("════════════════════════════════════════════════════════════════════════");
+			System.out.println("		메뉴 관리 페이지입니다. 무엇을 하시겠습니까?");
+			System.out.println("════════════════════════════════════════════════════════════════════════");
+			System.out.println(bWHITE+tBLACK+"      [1] 조회  |  [2] 등록  |  [3] 수정  |  [4] 삭제  |  [0] 뒤로가기     "+RESET);
+			int input = InputValid.getNumberInput("선택 ▶ ");
+			System.out.println();
+			System.out.println();
 
 			switch (input) {
 			case 1:
@@ -65,29 +66,27 @@ public class AdminMenuView {
 		AdminMenuController.searchMenuName();
 //		System.out.print("메뉴 이름을 입력하세요 : ");
 //		String menuName = sc.nextLine();
-		String menuName = InputValid.getStringInput("메뉴 이름을 입력하세요: ");
+		String menuName = InputValid.getStringInput("▶ 메뉴 이름을 입력하세요: ");
 		
 //		System.out.print("가격을 입력하세요 : ");
 //		int basicPrice = sc.nextInt();
-		int basicPrice = InputValid.getNumberInput("가격을 입력하세요: ");
+		int basicPrice = InputValid.getNumberInput("▶ 가격을 입력하세요: ");
 		
 //		System.out.print("설명을 입력하세요 : ");
 //		String description = sc.nextLine();
-		String description = InputValid.getShortDescription("설명을 입력하세요 : ");
+		String description = InputValid.getShortDescription("▶ 설명을 입력하세요 : ");
 		
 //		System.out.print("현재 잔여 수량을 입력하세요 : ");
 //		int capacity = sc.nextInt();
-		int capacity = InputValid.getNumberInput("현재 잔여 수량을 입력하세요: ");
+		int capacity = InputValid.getNumberInput("▶ 현재 잔여 수량을 입력하세요: ");
 		
-		System.out.println("해당하는 카테고리 번호를 입력하세요.");
-		System.out.println("1. 커피	|	2. 논커피	|	3. 푸드");
-		System.out.print("카테고리 번호 : ");
+		System.out.println("▶ 해당하는 카테고리 번호를 입력하세요.");
+		System.out.println(BOLD+"  1. 커피  |  2. 논커피  |  3. 푸드  "+RESET);
+		System.out.print("▶ 카테고리 번호 : ");
 		int categoryNo = sc.nextInt();
-		sc.nextLine(); // 입력 버퍼 비우기;
 		
 		Menu menu = new Menu(menuName, basicPrice, description, capacity, categoryNo);
 		AdminMenuController.insertMenu(menu);
-		sc.nextLine(); // 개행 문자 제거 (다른 입력이 있을 경우 대비)
 		
 	}//printInsertProcess
 	
@@ -96,24 +95,33 @@ public class AdminMenuView {
 	 */
 	public static void printUpdateProcess() {
 		AdminMenuController.searchMenuName();
-		int menuNo = InputValid.getNumberInput("수정하려는 상품 번호를 입력하세요 : ");
+		int menuNo = InputValid.getNumberInput("▶ 수정하려는 상품 번호를 입력하세요 : ");
 		
 //		System.out.print("수정하려는 가격을 입력하세요 : ");
-		int basicPrice = InputValid.getNumberInput("수정하려는 가격을 입력하세요 : ");
+		int basicPrice = InputValid.getNumberInput("▶ 수정하려는 가격을 입력하세요 : ");
 		
 //		System.out.print("수정하려는 설명을 입력하세요 : ");
-		String description = InputValid.getShortDescription("수정하려는 설명을 입력하세요 : ");
+		String description = InputValid.getShortDescription("▶ 수정하려는 설명을 입력하세요 : ");
 		
 //		System.out.print("현재 잔여 수량을 수정하세요 : ");
-		int capacity = InputValid.getNumberInput("현재 잔여 수량을 수정하세요 : ");
+		int capacity = InputValid.getNumberInput("▶ 현재 잔여 수량을 수정하세요 : ");
 		
 		//판매여부 조회
 		int menuIsActive = AdminMenuController.searchIsActive(menuNo);
+		
+		// 메뉴가 존재하지 않는 경우 즉시 종료
+	    if (menuIsActive == -1) {
+	    	System.out.println();
+	        printMessage("▶ 관리자 메뉴 관리 화면으로 돌아갑니다.");
+	        System.out.println();
+	        return; // 이후 코드 실행하지 않음
+	    }
+		
 	    String isActiveStatus = (menuIsActive == 1) ? "판매중" : "판매중지";
 	    System.out.println("현재 판매여부: " + isActiveStatus);
 		
 	    //사용자에게 판매여부 변경 여부 확인
-	    String userInput = InputValid.getYesOrNoInput("판매여부를 변경하시겠습니까? (Y/N): ");
+	    String userInput = InputValid.getYesOrNoInput("▶ 판매여부를 변경하시겠습니까? (Y/N): ");
 	    
 	    //사용자 입력에 따라 판매여부 수정
 	    if (userInput.equalsIgnoreCase("Y")) {
@@ -131,7 +139,7 @@ public class AdminMenuView {
 	 */
 	public static void printDeleteProcess() {
 		AdminMenuController.searchMenuName();
-		int menuNo = InputValid.getNumberInput("삭제하려는 상품 번호를 입력하세요 : ");
+		int menuNo = InputValid.getNumberInput("▶ 삭제하려는 상품 번호를 입력하세요 : ");
 		
 		AdminMenuController.deleteMenu(menuNo);
 		
@@ -145,12 +153,13 @@ public class AdminMenuView {
 	 * @param list
 	 */
 	public static void printAllMenuList(List<Menu> list) {
-		System.out.println("-----------------------------메뉴 " + list.size() + "개 ----------------------------");
-		System.out.println("메뉴번호 | 메뉴이름 | 가격 | 설명 |  등록일 | 재고 | 사용여부 | 카테고리");
+		System.out.println("***************************** [ 메뉴 " + list.size() + "개 ] *******************************");
+		System.out.println(bWHITE+tBLACK+"  메뉴번호 | 메뉴이름 | 가격 | 설명 |  등록일  | 재고 | 사용여부 | 카테고리  "+RESET);
 		for(Menu menu : list) {
 			System.out.println(menu);
 		}//end for
 		
+		System.out.println();
 		System.out.println();
 	}
 	
@@ -159,12 +168,12 @@ public class AdminMenuView {
 	 * @param list
 	 */
 	public static void printMenuNameList(List<Menu> list) {
-		System.out.println("------------------- [현재 메뉴] -------------------");
+		System.out.println("***************************** [현재 메뉴] *******************************");
 		// 메뉴 번호(menuNo) 기준으로 정렬
 	    Collections.sort(list, Comparator.comparingInt(Menu::getMenuNo));
 		
 		for (int i = 0; i < list.size(); i++) {
-	        System.out.print(list.get(i).getMenuNo() + ". " + list.get(i).getMenuName() + " ");
+	        System.out.print(list.get(i).getMenuNo() + ". " + list.get(i).getMenuName() + "   ");
 
 	        // 5개 출력할 때마다 줄바꿈
 	        if ((i + 1) % 5 == 0) {
@@ -177,14 +186,12 @@ public class AdminMenuView {
 	        System.out.println();
 	    }
 	    
-		System.out.println("-------------------------------------------------");
+		System.out.println("**************************************************************************");
 		
 		
 //		for(Menu menu : list) {
 //			System.out.print(menu.getMenuNo() + ". " + menu.getMenuName() + " ");
 //		}//end for
-		
-		System.out.println();
 	}
 	
 	/**
