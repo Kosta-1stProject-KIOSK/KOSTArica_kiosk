@@ -13,7 +13,7 @@ public class Coupon {
     private int isUsed;
     private String memberId;
     
-    
+    private String isUsedStr;
     
     //constructor
     public Coupon(int couponNo, String couponName, int discount, String validFrom, String validUntil, int isUsed, String memberId) {
@@ -27,17 +27,28 @@ public class Coupon {
 		this.memberId = memberId;
 	}
     
-    /**
-     * 회원별 조회 시 사용
-     */
-    public Coupon(int couponNo, String couponName, int discount, String validFrom, String validUntil, int isUsed) {
+    public Coupon(int couponNo, String couponName, int discount, String validFrom, String validUntil, String isUsedStr, String memberId) {
 		super();
 		this.couponNo = couponNo;
 		this.couponName = couponName;
 		this.discount = discount;
 		this.validFrom = validFrom;
 		this.validUntil = validUntil;
-		this.isUsed = isUsed;
+		this.isUsedStr = isUsedStr;
+		this.memberId = memberId;
+	}
+    
+    /**
+     * 회원별 조회 시 사용
+     */
+    public Coupon(int couponNo, String couponName, int discount, String validFrom, String validUntil, String isUsedStr) {
+		super();
+		this.couponNo = couponNo;
+		this.couponName = couponName;
+		this.discount = discount;
+		this.validFrom = validFrom;
+		this.validUntil = validUntil;
+		this.isUsedStr = isUsedStr;
 	}
     
     /**
@@ -74,9 +85,12 @@ public class Coupon {
 	
 	public String getMemberId() {return memberId;}
 	public void setMemberId(String memberId) {this.memberId = memberId;}
-
-
 	
+	
+	public String getIsUsedStr() {return isUsedStr;}
+
+	public void setIsUsedStr(String isUsedStr) {this.isUsedStr = isUsedStr;}
+
 	//toString
 	@Override
 	public String toString() {
@@ -91,7 +105,7 @@ public class Coupon {
 		builder.append(" | ");
 		builder.append(validUntil);
 		builder.append(" | ");
-		builder.append(isUsed);
+		builder.append(isUsedStr);
 		builder.append(" | ");
 		builder.append(memberId);
 		return builder.toString();
@@ -112,7 +126,7 @@ public class Coupon {
         builder.append(" | ");
         builder.append(validUntil);
         builder.append(" | ");
-        builder.append(isUsed);
+        builder.append(isUsedStr);
         return builder.toString();
     }
     

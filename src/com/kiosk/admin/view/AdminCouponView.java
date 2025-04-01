@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.kiosk.admin.controller.AdminCouponController;
-import com.kiosk.admin.controller.AdminMenuController;
 import com.kiosk.admin.model.dto.Coupon;
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+import com.kiosk.util.InputValid;
 
 /**
  * 관리자모드 > 메인 화면 > 쿠폰 관리 View
@@ -64,8 +63,7 @@ public class AdminCouponView {
 	 * 쿠폰 회원별 조회 Process View
 	 */
 	public static void printSearchByMemberId() {
-		System.out.print("회원 전화번호를 입력하세요 : ");
-		String memberId = sc.nextLine();
+		String memberId = InputValid.getPhoneNumberInput("회원 전화번호를 입력하세요 (숫자만) : ");
 		
 		AdminCouponController.searchByMember(memberId);
 		
@@ -75,21 +73,15 @@ public class AdminCouponView {
 	 * 쿠폰 발행 Process View
 	 */
 	public static void printInsertProcess() {
-		System.out.print("쿠폰명을 입력하세요 : ");
-		String couponName = sc.nextLine();
+		String couponName = InputValid.getStringInput("쿠폰명을 입력하세요 : ");
 		
-		System.out.print("할인 금액을 입력하세요 : ");
-		int discount = sc.nextInt();
-		sc.nextLine(); // 개행 문자 제거
+		int discount = InputValid.getNumberInput("할인 금액을 입력하세요 : ");
 		
-		System.out.print("시작일을 입력하세요 : ");
-		String validFrom = sc.nextLine();
+		 // 시작일과 만료일을 각각 유효성 검증
+	    String validFrom = InputValid.getValidDateInput("시작일 입력");
+	    String validUntil = InputValid.getValidDateInput("만료일 입력");
 		
-		System.out.print("만료일을 입력하세요 : ");
-		String validUntil = sc.nextLine();
-		
-		System.out.print("발급하실 회원의 전화번호를 입력하세요 : ");
-		String memberId = sc.nextLine();
+		String memberId = InputValid.getPhoneNumberInput("발급하실 회원의 전화번호를 입력하세요 (숫자만): ");
 		
 		Coupon coupon = new Coupon(couponName, discount, validFrom, validUntil, memberId);
 		AdminCouponController.insertCoupon(coupon);
@@ -101,9 +93,7 @@ public class AdminCouponView {
 	 * 쿠폰 사용여부 갱신 Process View
 	 */
 	public static void printUpdateProcess() {
-		System.out.print("쿠폰 사용여부를 갱신하려는 쿠폰번호를 입력하세요 : ");
-		int couponNo = sc.nextInt();
-		sc.nextLine(); // 개행 문자 제거
+		int couponNo = InputValid.getNumberInput("쿠폰 사용여부를 갱신하려는 쿠폰번호를 입력하세요 : ");
 		
 		//쿠폰 상태 조회
 		String couponIsUsed = AdminCouponController.searchByCouponNo(couponNo);
@@ -120,8 +110,7 @@ public class AdminCouponView {
 		printMessage("현재 쿠폰 사용여부는 [" + couponIsUsed + "] 입니다.");
 		
 		//상태변경 여부 변경
-		System.out.print("쿠폰 상태를 변경하시겠습니까? (Y/N) : ");
-		String input = sc.nextLine().toUpperCase();
+		String input = InputValid.getYesOrNoInput("쿠폰 상태를 변경하시겠습니까? (Y/N) : ").toUpperCase();
 		
 		if(input.equals("Y")) {
 			AdminCouponController.updateCoupon(couponNo);
@@ -137,9 +126,7 @@ public class AdminCouponView {
 	 * 메뉴 삭제 Process View
 	 */
 	public static void printDeleteProcess() {
-		System.out.print("삭제하려는 쿠폰 번호를 입력하세요 : ");
-		int couponNo = sc.nextInt();
-		sc.nextLine(); // 개행 문자 제거
+		int couponNo = InputValid.getNumberInput("삭제하려는 쿠폰 번호를 입력하세요 : ");
 		
 		AdminCouponController.deleteCoupon(couponNo);
 		
@@ -153,14 +140,27 @@ public class AdminCouponView {
 	 */
 	public static void printAllCouponList(List<Coupon> list, boolean isMemberView) {
 		System.out.println("-------------------------------전체 쿠폰 " + list.size() + "개 ---------------------------------");
-		for(Coupon coupon : list) {
-			if(isMemberView) { //회원별 조회일 경우
-				System.out.println(coupon.toStringForSearchByMember());
-			} else {
-				System.out.println(coupon); //전체 조회일 경우
-			}//end else
-		}//end for
+//		for(Coupon coupon : list) {
+//			if(isMemberView) { //회원별 조회일 경우
+//				System.out.println("");
+//				System.out.println(coupon.toStringForSearchByMember());
+//			} else {
+//				System.out.println("");
+//				System.out.println(coupon); //전체 조회일 경우
+//			}//end else
+//		}//end for
 		
+		if(isMemberView) { //회원별 조회일 경우
+			System.out.println("쿠폰번호 | 쿠폰이름 | 할인금액 | 시작일 | 만료일 | 사용여부");
+		for(Coupon coupon : list) {
+				System.out.println(coupon.toStringForSearchByMember());
+			}//end else
+		}else {
+			System.out.println("쿠폰번호 | 쿠폰이름 | 할인금액 | 시작일 | 만료일 | 사용여부 | 회원번호");
+			for(Coupon coupon : list) {
+			System.out.println(coupon); //전체 조회일 경우
+			}
+		}
 		System.out.println();
 	}
 	

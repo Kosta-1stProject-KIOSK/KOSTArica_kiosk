@@ -21,7 +21,11 @@ public class CouponDAOImpl implements CouponDAO{
     	Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "select * from coupon"; 
+		String sql = "SELECT coupon_no, coupon_name, discount, valid_from, valid_until,	"
+				+ "CASE WHEN is_used = 0 THEN '사용가능'	"
+				+ "WHEN is_used = 1 THEN '사용완료'	"
+				+ "END AS used, member_id	"
+				+ "FROM coupon"; 
 				
 		List<Coupon> list = new ArrayList<Coupon>();
 		try {
@@ -36,7 +40,7 @@ public class CouponDAOImpl implements CouponDAO{
 					rs.getInt(3),
 					rs.getString(4),
 					rs.getString(5),
-					rs.getInt(6),
+					rs.getString(6),
 					rs.getString(7)
 				);
 				
@@ -60,8 +64,11 @@ public class CouponDAOImpl implements CouponDAO{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "select coupon_no, coupon_name, discount, valid_from, valid_until, is_used	"
-				+ "from coupon where member_id = ?"; 
+		String sql = "SELECT coupon_no, coupon_name, discount, valid_from, valid_until,	"
+				+ "CASE WHEN is_used = 0 THEN '사용가능'	"
+				+ "WHEN is_used = 1 THEN '사용완료'	"
+				+ "END AS usage_status	"
+				+ "FROM coupon WHERE member_id = ?"; 
 				
 		List<Coupon> list = new ArrayList<Coupon>();
 		try {
@@ -74,12 +81,12 @@ public class CouponDAOImpl implements CouponDAO{
 			
 			while(rs.next()) {
 				Coupon coupon = new Coupon(
-					rs.getInt(1),
-					rs.getString(2),
-					rs.getInt(3),
-					rs.getString(4),
-					rs.getString(5),
-					rs.getInt(6)
+					rs.getInt("coupon_no"),
+					rs.getString("coupon_name"),
+					rs.getInt("discount"),
+					rs.getString("valid_from"),
+					rs.getString("valid_until"),
+					rs.getString("usage_status")
 				);
 				
 				list.add(coupon);

@@ -48,8 +48,7 @@ public class MenuDAOImpl implements MenuDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "select menu_no, menu_name, basic_price, description, input_date, capacity,  is_active, category_name	"
-				+ "from menu join category using(category_no)"; 
+		String sql = "select * from menu_list"; 
 				
 		List<Menu> list = new ArrayList<Menu>();
 		try {
@@ -65,7 +64,7 @@ public class MenuDAOImpl implements MenuDAO {
 						rs.getString(4),
 						rs.getString(5),
 						rs.getInt(6),
-						rs.getInt(7),
+						rs.getString(7),
 						rs.getString(8));
 				
 				list.add(menu);
@@ -121,7 +120,7 @@ public class MenuDAOImpl implements MenuDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = "update menu	"
-				+ "set basic_price = ?, description = ?, capacity = ?	"
+				+ "set basic_price = ?, description = ?, capacity = ?, is_active	= ?	"
 				+ "where menu_no = ?"; 
 
 		int result = 0;
@@ -132,7 +131,8 @@ public class MenuDAOImpl implements MenuDAO {
 			ps.setInt(1, menu.getBasicPrice());
 			ps.setString(2, menu.getDescription());
 			ps.setInt(3, menu.getCapacity());
-			ps.setInt(4, menu.getMenuNo());
+			ps.setInt(4, menu.getIsActive());
+			ps.setInt(5, menu.getMenuNo());
 			
 			result = ps.executeUpdate();
 			
@@ -142,6 +142,35 @@ public class MenuDAOImpl implements MenuDAO {
 		
 		return result;
 		
+	}
+	
+	/**
+	 * 메뉴번호로 메뉴 판매여부를 조회
+	 */
+	@Override
+	public int searchIsActive(int menuNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select is_active from menu where menu_no = ?"; 
+				
+		int result = -1;
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, menuNo);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}//end if
+		} finally {
+			DBManager.dbClose(con, ps, rs);
+		}//end finally
+		
+		return result;
 	}
 
 	
@@ -236,5 +265,28 @@ public class MenuDAOImpl implements MenuDAO {
 		
 		return list;
 	}//searchBestMenu
+	
+	/**
+     * 마감 시 재고 수정
+     */
+    public int updateCapacity() throws SQLException{
+    	Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE menu	"
+				+ "SET capacity = CASE WHEN menu_name = '아메리카노' THEN 100 ELSE 100 END";
+
+		int result = 0;
+		try {
+			con = DBManager.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			result = ps.executeUpdate();
+			
+		} finally {
+			DBManager.dbClose(con, ps);
+		}//end finally
+		
+		return result;
+    };
 
 }
