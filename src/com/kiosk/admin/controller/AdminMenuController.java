@@ -5,7 +5,6 @@ import java.util.List;
 import com.kiosk.admin.model.dto.Menu;
 import com.kiosk.admin.service.AdminMenuService;
 import com.kiosk.admin.view.AdminFailView;
-import com.kiosk.admin.view.AdminMainView;
 import com.kiosk.admin.view.AdminMenuView;
 import com.kiosk.view.MainMenuView;
 
@@ -35,7 +34,7 @@ public class AdminMenuController {
 			int result = ams.insertMenu(menu);
 			AdminMenuView.printMessage(result + "건 등록되었습니다!");
 		}catch (Exception e) {
-			AdminFailView.errorMessage(e.getMessage());
+			AdminFailView.errorMessage("카테고리를 다시 확인해 주세요.");
 		} finally {
 			System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
 			AdminMenuView.printAdminMenuManage();

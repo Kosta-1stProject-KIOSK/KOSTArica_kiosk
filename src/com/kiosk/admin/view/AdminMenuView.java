@@ -131,9 +131,7 @@ public class AdminMenuView {
 	 */
 	public static void printDeleteProcess() {
 		AdminMenuController.searchMenuName();
-		System.out.print("삭제하려는 상품 번호를 입력하세요 : ");
-		int menuNo = sc.nextInt();
-		sc.nextLine(); // 개행 문자 제거
+		int menuNo = InputValid.getNumberInput("삭제하려는 상품 번호를 입력하세요 : ");
 		
 		AdminMenuController.deleteMenu(menuNo);
 		
