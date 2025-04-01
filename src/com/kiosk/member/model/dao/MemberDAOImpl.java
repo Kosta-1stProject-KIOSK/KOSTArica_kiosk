@@ -1,8 +1,14 @@
 package com.kiosk.member.model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kiosk.member.model.dto.Member;
+import com.kiosk.util.DBManager;
 
 public class MemberDAOImpl implements MemberDAO {
 
@@ -13,10 +19,30 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	public Member searchById(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM member WHERE member_id = ?";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, memberId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Member(
+                            rs.getString("member_id"),
+                            rs.getString("member_name"),
+                            rs.getString("birth"),
+                            rs.getString("join_date"),
+                            rs.getInt("stamp_count")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("[ERROR] 회원 검색 실패: " + e.getMessage());
+        }
+        return null;
 	}
 
+	
+	
 	
 	
 	/**
@@ -25,8 +51,24 @@ public class MemberDAOImpl implements MemberDAO {
      */
 	@Override
 	public List<Member> searchAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Member> list = new ArrayList<>();
+        String sql = "SELECT * FROM member";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                list.add(new Member(
+                        rs.getString("member_id"),
+                        rs.getString("member_name"),
+                        rs.getString("birth"),
+                        rs.getString("join_date"),
+                        rs.getInt("stamp_count")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("[ERROR] 회원 전체 조회 실패: " + e.getMessage());
+        }
+        return list;
 	}
 
 	
@@ -37,7 +79,20 @@ public class MemberDAOImpl implements MemberDAO {
      */
 	@Override
 	public void insert(Member member) {
-		// TODO Auto-generated method stub
+		String sql = "INSERT INTO member (member_id, member_name, birth, join_date, stamp_count) VALUES (?, ?, ?, ?, ?)";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, member.getMemberID());
+            ps.setString(2, member.getMemberName());
+            ps.setString(3, member.getBirth());
+            ps.setString(4, member.getJoinDate());
+            ps.setInt(5, member.getStampCount());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("[ERROR] 회원 등록 실패: " + e.getMessage());
+        }
 		
 	}
 
@@ -49,7 +104,20 @@ public class MemberDAOImpl implements MemberDAO {
      */
 	@Override
 	public void update(Member member) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE member SET member_name=?, birth=?, join_date=?, stamp_count=? WHERE member_id=?";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, member.getMemberName());
+            ps.setString(2, member.getBirth());
+            ps.setString(3, member.getJoinDate());
+            ps.setInt(4, member.getStampCount());
+            ps.setString(5, member.getMemberID());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("[ERROR] 회원 수정 실패: " + e.getMessage());
+        }
 		
 	}
 
@@ -61,8 +129,19 @@ public class MemberDAOImpl implements MemberDAO {
      */
 	@Override
 	public void delete(String memberId) {
-		// TODO Auto-generated method stub
-		
-	}
+		String sql = "DELETE FROM member WHERE member_id = ?";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
+            ps.setString(1, memberId);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("[ERROR] 회원 삭제 실패: " + e.getMessage());
+        }
+    }
+
+	
 }
+
+
