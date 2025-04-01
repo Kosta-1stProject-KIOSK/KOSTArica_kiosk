@@ -22,42 +22,39 @@ public class MenuSelectService {
 	/**
 	 * 메뉴 선택창
 	 */
-	public void startMenuSelection() {
+	public Menu startMenuSelection() {
 	
 		int currentCategory = 1;	// 기본값으로 커피 메뉴 출력
 		
-		boolean sel = true;
-		while(sel) {
+		while(true) {
 			try {
+				
+				System.out.println("\n".repeat(10));
+				
+				
 				System.out.println("카테고리 변경 [A: 커피 / B: 음료 / C: 푸드]");
 				List<Menu> menus = printMenuByCategory(currentCategory);
 				
 				System.out.println("주문하실 메뉴의 [번호]를 입력해주세요.");
-                System.out.println("선택이 끝나면 [>]를 입력하세요.");
                 System.out.print("선택: ");
                 String input = sc.nextLine().trim().toUpperCase();
 
                 switch (input) {
                 //카테고리 변경
-                    case "A":
-                        currentCategory = 1;
-                        break;
-                    case "B":
-                        currentCategory = 2;
-                        break;
-                    case "C":
-                        currentCategory = 3;
-                        break;
-                    case ">":
-                        sel = false;
-                        break;
+                    case "A": currentCategory = 1; continue;
+                    case "B": currentCategory = 2; continue;
+                    case "C": currentCategory = 3; continue;
+                    case "!":
+                    	System.out.println("처음 화면으로 돌아갑니다...");
+                    	return null; 
                     default:
-                 //메뉴 선택   	
+                    	//메뉴 선택   	
                         try {
                             int index = Integer.parseInt(input) - 1;
                             if (index >= 0 && index < menus.size()) {
-                                Menu selected = menus.get(index);
-                                addToCart(selected);
+                            	
+                            	return menus.get(index);
+                            	
                             } else {
                                 System.out.println("없는 메뉴입니다. 다시 선택해주세요.");
                             }
@@ -73,7 +70,6 @@ public class MenuSelectService {
 			}
 		}// while문(메뉴 선택 중)
 		
-		System.out.println("메뉴 선택 완료. 다음 단계로 이동합니다.");
 		
 	}// 메뉴출력
 	

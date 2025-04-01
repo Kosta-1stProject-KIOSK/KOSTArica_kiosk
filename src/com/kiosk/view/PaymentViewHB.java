@@ -11,22 +11,22 @@ public class PaymentViewHB {
 		
         int total = 0;
         
+        System.out.println("주문 요약");
         for (Map.Entry<Menu, MenuOption> entry : cart.entrySet()) {
             Menu m = entry.getKey();
             MenuOption o = entry.getValue();
-            total += m.getBasicPrice() + o.getExtraFee();
+            int quantity = o.getQuantity();
+            if (quantity <= 0) quantity = 1;
+            
+            int itemPrice = (m.getBasicPrice() + o.getExtraFee()) * quantity;
+            total += itemPrice;
+            
+            System.out.println("- " + m.getMenuName() + " x " + quantity + "잔 (" + itemPrice + "원)");
         }
 
-        System.out.println("\n결제를 진행합니다...");
-        try {
-            Thread.sleep(500); System.out.print(".");
-            Thread.sleep(500); System.out.print(".");
-            Thread.sleep(500); System.out.println(".");
-        } catch (InterruptedException e) {
-            // 생략
-        }
+        
 
-        System.out.println("✅ 결제가 완료되었습니다.");
+        System.out.println("결제가 완료되었습니다.");
         System.out.println("총 결제 금액: " + total + "원");
         System.out.println("\n메인 화면으로 돌아갑니다.\n");
     }

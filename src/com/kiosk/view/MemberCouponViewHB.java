@@ -15,15 +15,20 @@ import com.kiosk.member.model.dao.MemberDAOImpl;
 import com.kiosk.member.model.dto.Member;
 import com.kiosk.member.model.dto.Menu;
 import com.kiosk.member.model.dto.MenuOption;
+import com.kiosk.member.model.dto.Order;
+import com.kiosk.member.service.OrderService;
 
 public class MemberCouponViewHB {
 	
 	public static void handleMemberFlow(Map<Menu, MenuOption> cart) {
         Scanner sc = new Scanner(System.in);
-
+        int couponChoice = 0;
+        
         try {
         System.out.println("\n회원 적립 및 쿠폰 사용을 진행합니다.");
-
+        MemberDAO memberDao = new MemberDAOImpl();
+        CouponDAO couponDao = new CouponDAOImpl();
+        
         // 주문 요약 출력
         int totalPrice = 0;
         
@@ -47,12 +52,12 @@ public class MemberCouponViewHB {
         System.out.print("입력: ");
         String phone = sc.nextLine().trim();
         
-        if(phone.matches("{10,11}")) {
+        if(phone.matches("\\d{10,11}")) {
         	if(phone.length() == 11) {
-        		phone = phone.replaceFirst("({3})({4})({4})", "$1-$2-$3");
+        		phone = phone.replaceFirst("(\\d{3})(\\d{4})(\\d{4})", "$1-$2-$3");
         	}
         	else {
-        		phone = phone.replaceFirst("({3})({3})({4})", "$1-$2-$3");
+        		phone = phone.replaceFirst("(\\d{3})(\\d{3})(\\d{4})", "$1-$2-$3");
         	}
         } else {
         	 System.out.println("전화번호는 숫자만 입력해주세요.");
@@ -61,7 +66,7 @@ public class MemberCouponViewHB {
         
         
         //보유 쿠폰 조회 및 출력
-        MemberDAO memberDao = new MemberDAOImpl();
+        memberDao = new MemberDAOImpl();
         Member member = memberDao.searchById(phone);  // 전화번호 = memberId
 
         if (member == null) {
@@ -84,7 +89,7 @@ public class MemberCouponViewHB {
         
         
         //쿠폰 자동 발급 및 스탬프 적립  
-        CouponDAO couponDao = new CouponDAOImpl();
+        couponDao = new CouponDAOImpl();
         List<Coupon> coupons = couponDao.searchByMember(member.getMemberID());
 
         int selectedDiscount = 0;
@@ -95,6 +100,8 @@ public class MemberCouponViewHB {
             System.out.println("보유 중인 쿠폰:");
             for (int i = 0; i < coupons.size(); i++) {
                 Coupon c = coupons.get(i);
+                if (c.getValidUntil().compareTo(LocalDate.now().toString()) < 0) continue;
+
                 System.out.printf("%d. %s (할인: %d원, 사용기한: %s)%s\n",
                     i + 1,
                     c.getCouponName(),
@@ -106,15 +113,17 @@ public class MemberCouponViewHB {
 
             System.out.println("쿠폰을 사용하시겠습니까? (번호 입력, 사용 안 함은 0)");
             System.out.print("선택: ");
-            int couponChoice = Integer.parseInt(sc.nextLine());
+            couponChoice = Integer.parseInt(sc.nextLine());
 
             if (couponChoice > 0 && couponChoice <= coupons.size()) {
                 Coupon chosen = coupons.get(couponChoice - 1);
                 if (chosen.getIsUsed() == 1) {
                     System.out.println("이미 사용된 쿠폰입니다.");
+                } else if (chosen.getValidUntil().compareTo(LocalDate.now().toString()) < 0) {
+                    System.out.println("유효기간이 지난 쿠폰입니다.");
                 } else {
                     selectedDiscount = chosen.getDiscount();
-                    couponDao.updateUsage(chosen.getCouponNo(), 1);  // 사용 처리
+                    couponDao.updateUsage(chosen.getCouponNo(), 1);
                     System.out.println(" 쿠폰이 적용되었습니다! -" + selectedDiscount + "원");
                 }
             } else {
@@ -143,8 +152,8 @@ public class MemberCouponViewHB {
                 member.getMemberID()
             );
 
-            CouponDAO coupDao = new CouponDAOImpl();
-            coupDao.insert(newCoupon);
+            couponDao = new CouponDAOImpl();
+            couponDao.insert(newCoupon);
             System.out.println("'회원적립쿠폰'이 발급되었습니다!");
 
             currentStamp = 0; // 초기화
@@ -161,9 +170,14 @@ public class MemberCouponViewHB {
         int originalTotal = 0;
         
         for (Map.Entry<Menu, MenuOption> entry : cart.entrySet()) {
-            Menu m = entry.getKey();
-            MenuOption o = entry.getValue();
-            originalTotal += m.getBasicPrice() + o.getExtraFee();
+        	 Menu m = entry.getKey();
+        	 MenuOption o = entry.getValue();
+        	    
+        	 int quantity = o.getQuantity(); // ✅ 수량 가져오기
+        	 if (quantity <= 0) quantity = 1;
+
+             originalTotal += (m.getBasicPrice() + o.getExtraFee()) * quantity;
+             
         }
         
         int finalTotal = originalTotal - selectedDiscount;
@@ -180,23 +194,39 @@ public class MemberCouponViewHB {
         System.out.println("\n결제를 진행합니다...");
         try {
             Thread.sleep(500);
-            System.out.print(".");
-            Thread.sleep(500);
-            System.out.print(".");
-            Thread.sleep(500);
             System.out.println(".");
+            Thread.sleep(1000);
+            System.out.println(". .");
+            Thread.sleep(500);
+            System.out.println(". . .");
         } catch (InterruptedException e) {
             // 무시
         }
 
         System.out.println("결제가 완료되었습니다. 감사합니다!");
-        System.out.println("처음 화면으로 돌아갑니다.\n");
-        System.out.println("\n[임시 출력] 회원 기능은 현재 개발 중입니다.");
-        System.out.println("전화번호 입력: " + phone);
-        System.out.println("주문이 완료된 것으로 가정하고 결제로 이동합니다.");
+        try {
+            boolean takeOut = true;  // 현재는 기본값 설정
+            Integer usedCouponNo = null;
+            
+            if(couponChoice > 0 && couponChoice <= coupons.size()) {
+            	Coupon chosen = coupons.get(couponChoice - 1);
+                if (chosen.getIsUsed() == 1 && chosen.getValidUntil().compareTo(LocalDate.now().toString()) >= 0) {
+                    usedCouponNo = chosen.getCouponNo();
+                }
+            }
+            		
+            OrderService orderService = new OrderService();
+            Order order = orderService.createOrderFromCart(cart, member.getMemberID(), usedCouponNo, takeOut);
+            orderService.saveOrder(order);
 
-        // TODO: 아래 로직은 개발 완료 시 PaymentView로 분기
-         PaymentViewHB.directPay(cart);
+        } catch (Exception e) {
+            System.out.println("[ERROR] 주문 저장 중 오류 발생");
+            e.printStackTrace();
+        }
+        
+        
+        PaymentViewHB.directPay(cart);
+
         }catch(SQLException e) {
         	System.out.println("데이터베이스 오류");
         	e.printStackTrace();

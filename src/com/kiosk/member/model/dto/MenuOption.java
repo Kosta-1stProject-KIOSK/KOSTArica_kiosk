@@ -13,6 +13,9 @@ public class MenuOption {
     private int whipping;
     private int extraFee;
     private int orderDetailNo;
+    private int quantity;
+    
+    
     
     //생성자
 	public MenuOption(int optionNo, int menuNo, String temperature, String size, int shot, int whipping, int extraFee,
@@ -91,7 +94,17 @@ public class MenuOption {
 	public void setOrderDetailNo(int orderDetailNo) {
 		this.orderDetailNo = orderDetailNo;
 	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

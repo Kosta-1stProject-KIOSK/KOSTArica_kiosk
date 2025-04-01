@@ -25,7 +25,6 @@ public class OrderService {
 		
 		try {
             orderDao.insert(order);
-            System.out.println("주문 정보가 저장되었습니다.");
         } catch (Exception e) {
             System.out.println("주문 저장 중 오류 발생: " + e.getMessage());
         }
@@ -46,20 +45,20 @@ public class OrderService {
     public Order createOrderFromCart(Map<Menu, MenuOption> cart, String memberId, Integer couponNo, boolean takeOut) {
         List<OrderDetail> orderDetails = new ArrayList<>();
         int totalPrice = 0;
-        int orderDetailNo = 1;
+        int orderDetailNo = 0;
 
         for (Map.Entry<Menu, MenuOption> entry : cart.entrySet()) {
             Menu menu = entry.getKey();
             MenuOption option = entry.getValue();
             
-            int quantity = option.getOrderDetailNo();
+            int quantity = option.getQuantity();
             if(quantity <= 0 ) quantity =1;
             
             int itemPrice = (menu.getBasicPrice() + option.getExtraFee()) * quantity;
             totalPrice += itemPrice;
 
             OrderDetail detail = new OrderDetail(
-                orderDetailNo++,
+                orderDetailNo,
                 quantity,
                 0, // orderNo는 insert 시 자동 세팅되도록
                 menu.getMenuNo(),

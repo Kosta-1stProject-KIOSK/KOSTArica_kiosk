@@ -84,9 +84,11 @@ public class OrderFlowService {
         System.out.println("\n장바구니에 담기[#] / 뒤로가기[<]");
         String confirm = sc.nextLine();
         if (confirm.equals("#")) {
-            return new MenuOption(0, menu.getMenuNo(), temperature, size, shot, whipping, extraFee, 0);
+        	MenuOption option = new MenuOption(0, menu.getMenuNo(), temperature, size, shot, whipping, extraFee, 0);
+            option.setQuantity(quantity); 
+            return option;
         } else {
-            return null; // < 입력 시 이전 단계로 돌아가기 처리
+            return null; 
         }
     
         

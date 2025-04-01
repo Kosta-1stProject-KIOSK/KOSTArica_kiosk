@@ -23,19 +23,17 @@ public class KioskController {
 	public void startOrder() {
 		
 		while(true) {
-			Menu selectedMenu = menuService.returnMenu();
+			
+			Menu selectedMenu = menuService.startMenuSelection();
             if (selectedMenu == null) {
-                System.out.println("메뉴 선택을 취소하였습니다.");
-                continue;
+                return;
             }
-            
             
             MenuOption option = orderService.selectOption(selectedMenu);
             if (option == null) {
                 System.out.println("옵션 선택을 취소하였습니다.");
                 continue;
             }
-            
             
             orderCart.put(selectedMenu, option);
             System.out.println("장바구니에 담았습니다.");
@@ -47,11 +45,9 @@ public class KioskController {
             System.out.print("선택: ");
             String action = sc.nextLine();
             
-            
             switch (action) {
             case "1":
                 continue;
-                
             case "2":
                 System.out.println("\n--- 결제 옵션 ---");
                 System.out.println("[1] 적립 및 쿠폰 사용");
@@ -61,13 +57,39 @@ public class KioskController {
                 String payOption = sc.nextLine();
 
                 switch (payOption) {
-                    case "1":
+                    case "1": //적립
                         MemberCouponViewHB.handleMemberFlow(orderCart);
-                        return;
-                    case "2":
-                        PaymentViewHB.directPay(orderCart);
-                        return;
-                    case "0":
+                        startOrder();
+                        continue;
+                        
+                    case "2": //바로결제
+                    	
+                    	System.out.println("[주문 요약]");
+                    	
+                    	for (Map.Entry<Menu, MenuOption> entry : orderCart.entrySet()) {
+                            Menu menu = entry.getKey();
+                            MenuOption opt = entry.getValue();
+                            
+                            int quantity = opt.getQuantity();
+                            if (quantity <= 0) quantity = 1;
+                            
+                            int total = (menu.getBasicPrice() + opt.getExtraFee()) * quantity;
+
+                            System.out.println("- " + menu.getMenuName() + " x " + quantity + "잔 (" + total + "원)");
+                        }
+
+                        System.out.print("\n위 내용으로 결제하시겠습니까? [Y/N]: ");
+                        String confirm = sc.nextLine().trim().toUpperCase();
+                        if (confirm.equals("Y")) {
+                            PaymentViewHB.directPay(orderCart);
+                        } else {
+                            System.out.println("결제가 취소되었습니다.");
+                        }
+                        
+                        startOrder();
+                        continue;
+                        
+                    case "0": //이전으로
                         break;
                     default:
                         System.out.println("잘못된 입력입니다.");

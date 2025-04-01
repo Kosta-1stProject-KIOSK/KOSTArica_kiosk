@@ -2,6 +2,7 @@ package com.kiosk.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -20,7 +21,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public void insert(Order order) {
 		String orderSql = "INSERT INTO orders (order_time, total_price, take_out, member_id, coupon_no) VALUES (?, ?, ?, ?, ?)";
-        String detailSql = "INSERT INTO order_detail (order_detail_no, quantity, order_no, menu_no, basic_price, total_extra_fee) VALUES (?, ?, ?, ?, ?, ?)";
+        String detailSql = "INSERT INTO order_detail (quantity, order_no, menu_no, basic_price) VALUES (?, ?, ?, ?)";
         String optionSql = "INSERT INTO menu_option (option_no, menu_no, temperature, size, shot, whipping, extra_fee, order_detail_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = null;
@@ -52,19 +53,25 @@ public class OrderDAOImpl implements OrderDAO {
             }
 
             // 2. 주문 상세 삽입
-            psDetail = con.prepareStatement(detailSql);
+            psDetail = con.prepareStatement(detailSql,Statement.RETURN_GENERATED_KEYS );
             psOption = con.prepareStatement(optionSql);
             for (OrderDetail detail : order.getOrderDetails()) {
                 detail.setOrderNo(orderNo);
 
-                psDetail.setInt(1, detail.getOrderDetailNo());
-                psDetail.setInt(2, detail.getQuantity());
-                psDetail.setInt(3, orderNo);
-                psDetail.setInt(4, detail.getMenuNo());
-                psDetail.setInt(5, detail.getBasicPrice());
-                psDetail.setInt(6, detail.getTotalExtraFee());
+                psDetail.setInt(1, detail.getQuantity());
+                psDetail.setInt(2, orderNo);
+                psDetail.setInt(3, detail.getMenuNo());
+                psDetail.setInt(4, detail.getBasicPrice());
                 psDetail.executeUpdate();
 
+                int generatedDetailNo = 0;
+                try (ResultSet rs = psDetail.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        generatedDetailNo = rs.getInt(1);
+                    }
+                }
+                
+                
                 // 3. 옵션 정보 삽입 (있는 경우만)
                 MenuOption opt = detail.getMenuOption();
                 if (opt != null) {
@@ -75,7 +82,7 @@ public class OrderDAOImpl implements OrderDAO {
                     psOption.setInt(5, opt.getShot());
                     psOption.setInt(6, opt.getWhipping());
                     psOption.setInt(7, opt.getExtraFee());
-                    psOption.setInt(8, detail.getOrderDetailNo());
+                    psOption.setInt(8, generatedDetailNo);
                     psOption.executeUpdate();
                 }
             }
