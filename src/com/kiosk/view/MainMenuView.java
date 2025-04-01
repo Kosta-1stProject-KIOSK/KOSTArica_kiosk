@@ -66,6 +66,7 @@ public class MainMenuView implements ConsoleColor {
 				AdminMainView.adminLogin(); //관리자 로그인 화면
 				break;
 			case 0 :
+				AdminMenuController.updateCapacity();
 				System.exit(0); //콘솔 종료
 			}//end switch
 			

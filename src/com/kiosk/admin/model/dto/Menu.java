@@ -15,6 +15,7 @@ public class Menu {
     private int categoryNo;
     private String categoryName;
     
+    private String isActiveStr;
     
     
     //Constructor
@@ -51,6 +52,21 @@ public class Menu {
 
 	//생성자
 	/**
+	 * 메뉴 전체 조회 시 사용
+	 */
+	public Menu(int menuNo, String menuName, int basicPrice, String description, String inputDate,
+			int capacity, String isActiveStr, String categoryName) {
+		super();
+		this.menuNo = menuNo;
+		this.menuName = menuName;
+		this.basicPrice = basicPrice;
+		this.description = description;
+		this.inputDate = inputDate;
+		this.capacity = capacity;
+		this.isActiveStr = isActiveStr;
+		this.categoryName = categoryName;
+	}
+	/**
 	 * 메뉴 등록 시 사용
 	 */
 	public Menu(String menuName, int basicPrice, String description, int capacity, int categoryNo) {
@@ -65,12 +81,13 @@ public class Menu {
 	/**
 	 * 메뉴 수정 시 사용
 	 */
-	public Menu(int menuNo, int basicPrice, String description, int capacity) {
+	public Menu(int menuNo, int basicPrice, String description, int capacity, int isActive) {
 		super();
 		this.menuNo = menuNo;
 		this.basicPrice = basicPrice;
 		this.description = description;
 		this.capacity = capacity;
+		this.isActive = isActive;
 	}
 
 	//getter, setter
@@ -136,7 +153,22 @@ public class Menu {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
+	public int getIsActive() {
+		return isActive;
+	}
 
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+
+	public String getIsActiveStr() {
+		return isActiveStr;
+	}
+
+	public void setIsActiveStr(String isActiveStr) {
+		this.isActiveStr = isActiveStr;
+	}
 
 	//toString
 	@Override
@@ -154,7 +186,7 @@ public class Menu {
 		builder.append(" | ");
 		builder.append(capacity);
 		builder.append(" | ");
-		builder.append(isActive);
+		builder.append(isActiveStr);
 		builder.append(" | ");
 		builder.append(categoryNo);
 		builder.append(" | ");

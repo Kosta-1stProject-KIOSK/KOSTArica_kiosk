@@ -58,6 +58,27 @@ public class AdminMenuController {
 	}//updateMenu
 	
 	/**
+	 * 메뉴 판매여부 조회
+	 */
+	public static int searchIsActive(int menuNo) {
+		try {
+			int result = ams.searchIsActive(menuNo);
+			
+			//메뉴가 존재하지 않으면
+			if(result == -1) {
+				return -1; //해당 메뉴가 존재하지 않음을 return
+			}
+			
+			//메뉴가 존재하는 경우
+			return result; //현재 상태를 return
+			
+		}catch (Exception e) {
+			AdminFailView.errorMessage(e.getMessage());
+			return -1;
+		}
+	}//searchIsActive
+	
+	/**
 	 * 메뉴 삭제
 	 */
 	public static void deleteMenu(int menuNo) {
@@ -71,6 +92,18 @@ public class AdminMenuController {
 			AdminMenuView.printAdminMenuManage();
 		}//end finally
 	}//deleteMenu
+	
+	/**
+	 * 메뉴번호와 메뉴명 조회
+	 */
+	public static void searchMenuName() {
+		try {
+			List<Menu> menu = ams.searchAll();
+			AdminMenuView.printMenuNameList(menu);
+		} catch (Exception e) {
+			AdminFailView.errorMessage(e.getMessage());
+		}//end catch
+	}//searchAll
 	
 	
 	///////////////////////////전체 메인 화면 용///////////////////////////
@@ -99,5 +132,17 @@ public class AdminMenuController {
 			AdminFailView.errorMessage(e.getMessage());
 		}//end catch
 	}//searchNewMenu
+	
+	/**
+	 * 마감 시 재고 수정
+	 */
+	public static void updateCapacity() {
+		try {
+			int result = ams.updateCapacity();
+			if(result == 1) AdminMenuView.printMessage("재고 업데이트 후 종료됩니다. 이용해 주셔서 감사합니다 :)");
+		}catch (Exception e) {
+			AdminFailView.errorMessage(e.getMessage());
+		}//end finally
+	}//updateMenu
 	
 }//class
