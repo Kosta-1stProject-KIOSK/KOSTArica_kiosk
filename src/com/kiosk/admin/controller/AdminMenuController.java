@@ -6,9 +6,10 @@ import com.kiosk.admin.model.dto.Menu;
 import com.kiosk.admin.service.AdminMenuService;
 import com.kiosk.admin.view.AdminFailView;
 import com.kiosk.admin.view.AdminMenuView;
+import com.kiosk.view.ConsoleColor;
 import com.kiosk.view.MainMenuView;
 
-public class AdminMenuController {
+public class AdminMenuController implements ConsoleColor{
 	static AdminMenuService ams = new AdminMenuService();
 	
 	/**
@@ -19,9 +20,10 @@ public class AdminMenuController {
 			List<Menu> menu = ams.searchAll();
 			AdminMenuView.printAllMenuList(menu);
 		} catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
+			System.out.println("▶ 관리자 메뉴 관리 화면으로 돌아갑니다.");
 			AdminMenuView.printAdminMenuManage();
 		}//end finally
 	}//searchAll
@@ -32,11 +34,14 @@ public class AdminMenuController {
 	public static void insertMenu(Menu menu) {
 		try {
 			int result = ams.insertMenu(menu);
-			AdminMenuView.printMessage(result + "건 등록되었습니다!");
+			System.out.println();
+			AdminMenuView.printMessage(tGREEN + "▶ " + result + "건 등록되었습니다!" + RESET);
 		}catch (Exception e) {
-			AdminFailView.errorMessage("카테고리를 다시 확인해 주세요.");
+			System.out.println();
+			AdminFailView.errorMessage(tRED + "▶ 카테고리를 다시 확인해 주세요." + RESET);
 		} finally {
-			System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 관리 화면으로 돌아갑니다.");
 			AdminMenuView.printAdminMenuManage();
 		}//end finally
 	}//insertMenu
@@ -47,11 +52,14 @@ public class AdminMenuController {
 	public static void updateMenu(Menu menu) {
 		try {
 			int result = ams.updateMenu(menu);
-			AdminMenuView.printMessage(result + "건 수정되었습니다!");
+			System.out.println();
+			AdminMenuView.printMessage(tGREEN + "▶ " + result + "건 수정되었습니다!" + RESET);
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 관리 화면으로 돌아갑니다.");
 			AdminMenuView.printAdminMenuManage();
 		}//end finally
 	}//updateMenu
@@ -72,6 +80,7 @@ public class AdminMenuController {
 			return result; //현재 상태를 return
 			
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 			return -1;
 		}
@@ -83,11 +92,14 @@ public class AdminMenuController {
 	public static void deleteMenu(int menuNo) {
 		try {
 			int result = ams.deleteMenu(menuNo);
-			AdminMenuView.printMessage(result + "건 삭제되었습니다!");
+			System.out.println();
+			AdminMenuView.printMessage(tGREEN + "▶ " + result + "건 삭제되었습니다!" + RESET);
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		} finally {
-			System.out.println("관리자 메뉴 관리 화면으로 돌아갑니다.");
+			System.out.println();
+			System.out.println("▶ 관리자 메뉴 관리 화면으로 돌아갑니다.");
 			AdminMenuView.printAdminMenuManage();
 		}//end finally
 	}//deleteMenu
@@ -100,6 +112,7 @@ public class AdminMenuController {
 			List<Menu> menu = ams.searchAll();
 			AdminMenuView.printMenuNameList(menu);
 		} catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		}//end catch
 	}//searchAll
@@ -116,6 +129,7 @@ public class AdminMenuController {
 			List<String> menu = ams.searchNewMenu();
 			MainMenuView.printNewMenuList(menu);
 		} catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		}//end catch
 	}//searchNewMenu
@@ -128,6 +142,7 @@ public class AdminMenuController {
 			List<String> menu = ams.searchBestMenu();
 			MainMenuView.printBestMenuList(menu);
 		} catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		}//end catch
 	}//searchNewMenu
@@ -138,8 +153,12 @@ public class AdminMenuController {
 	public static void updateCapacity() {
 		try {
 			int result = ams.updateCapacity();
-			if(result == 1) AdminMenuView.printMessage("재고 업데이트 후 종료됩니다. 이용해 주셔서 감사합니다 :)");
+			if(result == 1) {
+				System.out.println();
+				AdminMenuView.printMessage("▶ 재고 업데이트 후 종료됩니다. 이용해 주셔서 감사합니다 :)");
+			}
 		}catch (Exception e) {
+			System.out.println();
 			AdminFailView.errorMessage(e.getMessage());
 		}//end finally
 	}//updateMenu

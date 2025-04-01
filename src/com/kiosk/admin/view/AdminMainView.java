@@ -3,12 +3,13 @@ package com.kiosk.admin.view;
 import java.util.Scanner;
 
 import com.kiosk.admin.controller.AdminloginController;
+import com.kiosk.view.ConsoleColor;
 import com.kiosk.view.MainMenuView;
 
 /**
  * 관리자 모드 진입 시 메인 화면 View
  */
-public class AdminMainView {
+public class AdminMainView implements ConsoleColor {
 	private static Scanner sc = new Scanner(System.in);
 
 	/**
@@ -28,9 +29,13 @@ public class AdminMainView {
 	 * 관리자 메인화면 메뉴를 출력하는 메소드
 	 */
 	public static void printAdminMain() {
-		System.out.println("════════════════════════ KOSTArica Cafe '관리자모드'입니다. 메뉴를 선택하세요══════════════════════════════");
-		System.out.println("|	[1] 메뉴관리	| 	[2] 쿠폰관리	|	[3] 통계조회	|	[0] 뒤로가기	|");
-		System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════");
+		System.out.println();
+		System.out.println();
+		System.out.println(bBLUE + "═══════════ KOSTArica Cafe '관리자모드'입니다. 메뉴를 선택하세요══════════");
+		System.out.println("                                                                         ");
+		System.out.println("    [1] 메뉴관리   |  [2] 쿠폰관리   |  [3] 통계조회   |  [0] 뒤로가기    ");
+		System.out.println("                                                                         ");
+		System.out.println("═════════════════════════════════════════════════════════════════════════"+RESET);
 	}// printMainMenu
 
 	/**

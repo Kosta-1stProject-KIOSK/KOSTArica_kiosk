@@ -2,7 +2,9 @@ package com.kiosk.util;
 
 import java.util.Scanner;
 
-public class InputValid {
+import com.kiosk.view.ConsoleColor;
+
+public class InputValid implements ConsoleColor{
     private static Scanner scanner = new Scanner(System.in);
 
     // 문자 입력 검증
@@ -11,13 +13,13 @@ public class InputValid {
             System.out.print(message);
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) {
-                System.out.println("입력값이 공백입니다. 다시 입력하세요.");
+                System.out.println(tRED + "▶ 입력값이 공백입니다. 다시 입력하세요." + RESET);
                 continue;
             }
             if (input.matches("[a-zA-Z가-힣]+")) {
                 return input;
             }
-            System.out.println("잘못된 입력입니다. 문자로 입력하세요.");
+            System.out.println(tRED + "▶ 잘못된 입력입니다. 문자로 입력하세요." + RESET);
         }
     }
 
@@ -27,13 +29,13 @@ public class InputValid {
             System.out.print(message);
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) {
-                System.out.println("입력값이 공백입니다. 숫자로 다시 입력하세요.");
+                System.out.println(tRED + "▶ 입력값이 공백입니다. 숫자로 다시 입력하세요." + RESET);
                 continue;
             }
             if (input.matches("\\d+")) {
                 return Integer.parseInt(input);
             }
-            System.out.println("잘못된 입력입니다. 숫자로 입력하세요.");
+            System.out.println(tRED + "▶ 잘못된 입력입니다. 숫자로 입력하세요." + RESET);
         }
     }
 
@@ -43,13 +45,13 @@ public class InputValid {
             System.out.print(message);
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) {
-                System.out.println("입력값이 공백입니다. 다시 입력하세요.");
+                System.out.println(tRED + "▶ 입력값이 공백입니다. 다시 입력하세요." + RESET);
                 continue;
             }
             if (input.length() <= 33) {
                 return input;
             }
-            System.out.println("설명은 30자 이내로 입력하세요.");
+            System.out.println(tRED + "▶ 설명은 30자 이내로 입력하세요." + RESET);
         }
     }
 
@@ -59,13 +61,13 @@ public class InputValid {
             System.out.print(message);
             String input = scanner.nextLine().trim().toUpperCase();
             if (input.isEmpty()) {
-                System.out.println("입력값이 공백입니다. Y 또는 N만 입력하세요.");
+                System.out.println(tRED + "▶ 입력값이 공백입니다. Y 또는 N만 입력하세요." + RESET);
                 continue;
             }
             if (input.equals("Y") || input.equals("N")) {
                 return input;
             }
-            System.out.println("잘못된 입력입니다. Y 또는 N만 입력하세요.");
+            System.out.println(tRED + "▶ 잘못된 입력입니다. Y 또는 N만 입력하세요." + RESET);
         }
     }
 
@@ -75,7 +77,7 @@ public class InputValid {
             System.out.print(message);
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) {
-                System.out.println("입력값이 공백입니다. 전화번호를 다시 입력하세요.");
+                System.out.println(tRED + "▶ 입력값이 공백입니다. 전화번호를 다시 입력하세요." + RESET);
                 continue;
             }
             // 11자리 숫자만 입력 받기
@@ -83,7 +85,7 @@ public class InputValid {
                 // 3-4-4 형식으로 변환하여 반환
                 return formatPhoneNumber(input);
             }
-            System.out.println("잘못된 입력입니다. 11자리 숫자로만 입력하세요.");
+            System.out.println(tRED + "▶ 잘못된 입력입니다. 11자리 숫자로만 입력하세요." + RESET);
         }
     }
 
@@ -140,30 +142,30 @@ public class InputValid {
 
         while (true) {
             // 년도 입력
-            System.out.print(dateType + " 년도(4자리): ");
+            System.out.print("▶ " + dateType + " 년도(4자리): ");
             year = scanner.nextLine().trim();
             if (year.isEmpty()) {
-                System.out.println("년도는 4자리 숫자여야 합니다.");
+                System.out.println(tRED + "▶ 년도는 4자리 숫자여야 합니다." + RESET);
                 continue;
             }
             if (!isValidYear(year)) {
-                System.out.println("년도는 4자리 숫자여야 합니다.");
+                System.out.println(tRED + "▶ 년도는 4자리 숫자여야 합니다." + RESET);
                 continue;
             }
 
             // 월 입력
             while (true) {
-                System.out.print(dateType + " 월: ");
+                System.out.print("▶ " + dateType + " 월: ");
                 month = scanner.nextLine().trim();
                 if (month.isEmpty()) {
-                    System.out.println("월은 01에서 12 사이의 숫자여야 합니다.");
+                    System.out.println(tRED + "▶ 월은 01에서 12 사이의 숫자여야 합니다." + RESET);
                     continue;
                 }
                 if (month.length() == 1) {
                     month = "0" + month;  // 1자리 입력 시 2자리로 변환 (1 -> 01)
                 }
                 if (!isValidMonth(month)) {
-                    System.out.println("월은 01에서 12 사이의 숫자여야 합니다.");
+                    System.out.println(tRED + "▶ 월은 01에서 12 사이의 숫자여야 합니다." + RESET);
                     continue;  // 월이 잘못되면 다시 월만 입력 받음
                 }
                 break; // 월이 유효하면 반복문 종료
@@ -171,17 +173,17 @@ public class InputValid {
 
             // 일 입력
             while (true) {
-                System.out.print(dateType + " 일: ");
+                System.out.print("▶ " + dateType + " 일: ");
                 day = scanner.nextLine().trim();
                 if (day.isEmpty()) {
-                    System.out.println("일은 01에서 31 사이의 숫자여야 합니다.");
+                    System.out.println(tRED + "▶ 일은 01에서 31 사이의 숫자여야 합니다." + RESET);
                     continue;
                 }
                 if (day.length() == 1) {
                     day = "0" + day;  // 1자리 입력 시 2자리로 변환 (1 -> 01)
                 }
                 if (!isValidDay(day, Integer.parseInt(year), Integer.parseInt(month))) {
-                    System.out.println("잘못된 날짜입니다. 다시 입력하세요.");
+                    System.out.println(tRED + "▶ 잘못된 날짜입니다. 다시 입력하세요." + RESET);
                     continue;
                 }
                 break; // 일자가 유효하면 반복문 종료
