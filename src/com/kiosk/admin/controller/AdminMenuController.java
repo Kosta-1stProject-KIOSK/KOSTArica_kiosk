@@ -5,7 +5,9 @@ import java.util.List;
 import com.kiosk.admin.model.dto.Menu;
 import com.kiosk.admin.service.AdminMenuService;
 import com.kiosk.admin.view.AdminFailView;
+import com.kiosk.admin.view.AdminMainView;
 import com.kiosk.admin.view.AdminMenuView;
+import com.kiosk.view.MainMenuView;
 
 public class AdminMenuController {
 	static AdminMenuService ams = new AdminMenuService();
@@ -69,5 +71,33 @@ public class AdminMenuController {
 			AdminMenuView.printAdminMenuManage();
 		}//end finally
 	}//deleteMenu
+	
+	
+	///////////////////////////전체 메인 화면 용///////////////////////////
+	
+	
+	/**
+	 * 신메뉴 조회
+	 */
+	public static void searchNewMenu() {
+		try {
+			List<String> menu = ams.searchNewMenu();
+			MainMenuView.printNewMenuList(menu);
+		} catch (Exception e) {
+			AdminFailView.errorMessage(e.getMessage());
+		}//end catch
+	}//searchNewMenu
+	
+	/**
+	 * 베스트 메뉴 조회
+	 */
+	public static void searchBestMenu() {
+		try {
+			List<String> menu = ams.searchBestMenu();
+			MainMenuView.printBestMenuList(menu);
+		} catch (Exception e) {
+			AdminFailView.errorMessage(e.getMessage());
+		}//end catch
+	}//searchNewMenu
 	
 }//class
