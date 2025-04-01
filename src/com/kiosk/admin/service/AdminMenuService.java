@@ -57,4 +57,27 @@ public class AdminMenuService {
 		}//end else
 	}//deleteMenu
 	
+	
+	///////////////////////////전체 메인 화면 용///////////////////////////
+	
+	
+	/**
+     * 신메뉴 조회
+     * */
+	public List<String> searchNewMenu() throws NotFoundException , SQLException{
+		List<String> list=menuDao.searchNewMenu();
+		if(list.size()==0)
+			throw new NotFoundException("현재 신메뉴가 없습니다.");
+		return list;
+	}//searchNewMenu
+	
+	/**
+     * 베스트메뉴 조회
+     * */
+	public List<String> searchBestMenu() throws NotFoundException , SQLException{
+		List<String> list=menuDao.searchBestMenu();
+		if(list.size()==0)
+			throw new NotFoundException("현재 신메뉴가 없습니다.");
+		return list;
+	}//searchBestMenu
 }//class
