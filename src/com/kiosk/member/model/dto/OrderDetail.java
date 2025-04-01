@@ -1,6 +1,6 @@
 package com.kiosk.member.model.dto;
 
-import com.kiosk.admin.model.dto.MenuOption;
+import com.kiosk.member.model.dto.MenuOption;
 
 /**
  * 주문상세정보 order_detail 테이블
@@ -26,26 +26,26 @@ public class OrderDetail {
 		this.totalExtraFee = totalExtraFee;
 	}
 
+	
 	public int getOrderDetailNo() {
 		return orderDetailNo;
 	}
-
 	public void setOrderDetailNo(int orderDetailNo) {
 		this.orderDetailNo = orderDetailNo;
 	}
 
+	
 	public int getQuantity() {
 		return quantity;
 	}
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
-
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
@@ -53,7 +53,6 @@ public class OrderDetail {
 	public int getMenuNo() {
 		return menuNo;
 	}
-
 	public void setMenuNo(int menuNo) {
 		this.menuNo = menuNo;
 	}
@@ -61,7 +60,6 @@ public class OrderDetail {
 	public int getBasicPrice() {
 		return basicPrice;
 	}
-
 	public void setBasicPrice(int basicPrice) {
 		this.basicPrice = basicPrice;
 	}
@@ -69,11 +67,17 @@ public class OrderDetail {
 	public int getTotalExtraFee() {
 		return totalExtraFee;
 	}
-
 	public void setTotalExtraFee(int totalExtraFee) {
 		this.totalExtraFee = totalExtraFee;
 	}
 
+	public MenuOption getMenuOption() {
+	    return menuOption;
+	}
+	public void setMenuOption(MenuOption menuOption) {
+	    this.menuOption = menuOption;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
