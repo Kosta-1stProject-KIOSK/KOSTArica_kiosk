@@ -142,7 +142,7 @@ public class AdminStatsView {
 
 	    System.out.println("[ 일간 ] " + stats.getTotalDaily() + " 원");
 	    System.out.println("[ 주간 ] " + stats.getTotalWeekly() + " 원");
-	    System.out.println("[ 일간 ] " + stats.getTotalMonthly() + " 원");
+	    System.out.println("[ 월간 ] " + stats.getTotalMonthly() + " 원");
 
 	    System.out.println("=====================================");
 	}
@@ -162,7 +162,7 @@ public class AdminStatsView {
 	                       .orElse(1); // 주문이 하나도 없을 경우 대비
 
 	    for (Stats stats : list) {
-	        int squares = (int) ((stats.getTotalSales() / (double) maxSales) * 10); // 최대 10개까지 별 출력
+	        int squares = (int) ((stats.getTotalSales() / (double) maxSales) * 50); // 최대 50개까지 출력
 	        System.out.printf("[%02d시] %3d개 %s%n", 
 	                          stats.getOrderHour(), 
 	                          stats.getTotalSales(), 
@@ -185,6 +185,12 @@ public class AdminStatsView {
 	    System.out.println("[ 지난" + str + " ] " + stats.getTotalSales() + " 원");
 
 	    System.out.println("=====================================");
+	    
+	    // 현재 값과 이전 값의 차이 계산
+	    int difference = stats.getOrderHour() - stats.getTotalSales();
+	    
+	    // 차이 출력 (양수/음수에 따라 + 또는 - 기호 추가)
+	    System.out.println("[ 매출 ] " + (difference >= 0 ? "+" : "") + difference + " 원");
 	}
 	
 	/**
