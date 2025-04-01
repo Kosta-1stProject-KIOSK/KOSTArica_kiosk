@@ -49,7 +49,7 @@ public class MainMenuView implements ConsoleColor {
 		    System.out.println();
 		    System.out.println("                     	◆:*:◇:*:◆:*:◇:*:◆	");
 
-		    System.out.println(BOLD+tCYAN+"                      	 [ BEST 메뉴 추천 ]	");
+		    System.out.println(BOLD+tCYAN+"                      	 [ BEST 메뉴 추천 ]	"+RESET);
 		    System.out.println();
 		    AdminMenuController.searchBestMenu();
 			printMainMenu(); //메인화면 메뉴 출력
