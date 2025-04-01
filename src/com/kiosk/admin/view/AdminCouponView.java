@@ -32,7 +32,7 @@ public class AdminCouponView {
 			switch (input) {
 			case 1:
 				//전체 조회 화면
-				AdminCouponController.searchAll();
+				AdminCouponController.searchAll(true);
 				break;
 			case 2:
 				// 회원별 조회 화면
@@ -93,6 +93,10 @@ public class AdminCouponView {
 	 * 쿠폰 사용여부 갱신 Process View
 	 */
 	public static void printUpdateProcess() {
+		System.out.println("-----------------[ 쿠폰 번호를 먼저 확인 하세요. ]-------------------");
+		// 전체 조회 화면
+		AdminCouponController.searchAll(false);
+		
 		int couponNo = InputValid.getNumberInput("쿠폰 사용여부를 갱신하려는 쿠폰번호를 입력하세요 : ");
 		
 		//쿠폰 상태 조회
@@ -126,6 +130,9 @@ public class AdminCouponView {
 	 * 메뉴 삭제 Process View
 	 */
 	public static void printDeleteProcess() {
+		System.out.println("-----------------[ 쿠폰 번호를 먼저 확인 하세요. ]-------------------");
+		// 전체 조회 화면
+		AdminCouponController.searchAll(false);
 		int couponNo = InputValid.getNumberInput("삭제하려는 쿠폰 번호를 입력하세요 : ");
 		
 		AdminCouponController.deleteCoupon(couponNo);
