@@ -30,7 +30,7 @@ public class AdminCouponService {
 	public List<Coupon> searchByMember(String memberId) throws NotFoundException , SQLException{
 		List<Coupon> list=couponDao.searchByMember(memberId);
 		if(list.size()==0)
-			throw new NotFoundException("현재 쿠폰이 없습니다.");
+			throw new NotFoundException("현재 쿠폰이 없거나 존재하지 않는 회원입니다.");
 		return list;
 	}//searchByMember
 	
@@ -79,7 +79,7 @@ public class AdminCouponService {
 	public int deleteCoupon(int couponNo) throws SQLException{
 		int result =  couponDao.delete(couponNo);
 		if(result == 0) {
-			throw new SQLException("쿠폰 삭제가 실패하였습니다.");
+			throw new SQLException("존재하지 않는 쿠폰입니다.");
 		} else {
 			return 1;
 		}//end else

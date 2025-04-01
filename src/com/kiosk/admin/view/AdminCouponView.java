@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.kiosk.admin.controller.AdminCouponController;
-import com.kiosk.admin.controller.AdminMenuController;
 import com.kiosk.admin.model.dto.Coupon;
 import com.kiosk.util.InputValid;
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 /**
  * 관리자모드 > 메인 화면 > 쿠폰 관리 View
