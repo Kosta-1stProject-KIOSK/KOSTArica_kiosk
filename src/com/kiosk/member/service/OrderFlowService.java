@@ -11,6 +11,24 @@ public class OrderFlowService {
 	
 	public MenuOption selectOption(Menu menu) {
 		
+		if(menu.getCategoryName().equalsIgnoreCase("푸드")) {
+			
+			System.out.println("\n" + menu.getMenuName() + " (" + menu.getBasicPrice() + "원)");
+	        System.out.print("수량을 입력해주세요: ");
+	        int quantity = Integer.parseInt(sc.nextLine());
+
+	        int totalPrice = menu.getBasicPrice() * quantity;
+	        System.out.println("총 가격: " + totalPrice + "원");
+
+	        System.out.println("\n장바구니에 담기[#] / 뒤로가기[<]");
+	        String confirm = sc.nextLine();
+	        if (confirm.equals("#")) {
+	            return new MenuOption(0, menu.getMenuNo(), "-", "-", 0, 0, 0, quantity);  // 옵션 없는 값으로 채움
+	        } else {
+	            return null;
+	        }
+		}
+		
 		System.out.println("\n" + menu.getMenuName() + " (" + menu.getBasicPrice() + "원)");
 		System.out.println(menu.getDescription());
 		
