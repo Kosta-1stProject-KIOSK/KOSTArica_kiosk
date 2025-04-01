@@ -11,7 +11,7 @@ public class Menu {
     private String categoryName;
     private String description;
     
-	public Menu(int menuNo, String menuName, int basicPrice, String categoryName, String description) {
+	public Menu(int menuNo, String menuName, int basicPrice, String description,String categoryName ) {
 		super();
 		this.menuNo = menuNo;
 		this.menuName = menuName;
