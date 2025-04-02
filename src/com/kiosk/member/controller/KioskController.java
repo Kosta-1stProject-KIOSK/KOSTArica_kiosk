@@ -38,7 +38,9 @@ public class KioskController implements ConsoleColor {
             
             orderCart.put(selectedMenu, option);
             System.out.println();
-                    System.out.println(bCYAN+"		장바구니에 담았습니다.                          "+RESET);
+            System.out.println();
+            System.out.println();
+                    System.out.println(bCYAN+"		    장바구니에 담았습니다.                                                 "+RESET);
             System.out.println();
                System.out.println("╭╼|════════════════════════════════════════════════|╾╮\r\n"
             		+ BOLD+ "	           	"+bMAGENTA+"다음 작업을 선택하세요\r\n"
@@ -73,6 +75,7 @@ public class KioskController implements ConsoleColor {
                         
                     case "2": //바로결제
                     	System.out.println();
+                    	System.out.println("╔══════════════════ 주문 요약 ══════════════════╗");                    	
                     	for (Map.Entry<Menu, MenuOption> entry : orderCart.entrySet()) {
                             Menu menu = entry.getKey();
                             MenuOption opt = entry.getValue();
@@ -82,7 +85,6 @@ public class KioskController implements ConsoleColor {
                             
                             int total = (menu.getBasicPrice() + opt.getExtraFee()) * quantity;
 
-                            System.out.println("╔══════════════════ 주문 요약 ══════════════════╗");                    	
                             System.out.println("	- " + menu.getMenuName() + " x " + quantity + "잔 (" + total + "원)");
                         }
                     	System.out.println("﻿╚═══════════════════════════════════════════════╝");
