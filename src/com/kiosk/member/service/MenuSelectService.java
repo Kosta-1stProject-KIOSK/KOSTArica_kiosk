@@ -10,6 +10,7 @@ import com.kiosk.member.model.dao.MenuDAO;
 import com.kiosk.member.model.dao.MenuDAOImpl;
 import com.kiosk.member.model.dto.Menu;
 import com.kiosk.view.ConsoleColor;
+import com.kiosk.admin.controller.AdminMenuController;
 import com.kiosk.exception.MenuNotFoundException;
 import com.kiosk.exception.NotFoundException;
 
@@ -29,7 +30,7 @@ public class MenuSelectService implements ConsoleColor {
 		
 		while(true) {
 			try {
-				System.out.println("\n".repeat(10));
+				System.out.println("\n".repeat(5));
 				
         System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃");
         System.out.println(bBROWN+tYELLOW+"									      ");
@@ -42,27 +43,30 @@ public class MenuSelectService implements ConsoleColor {
 	    System.out.println("								      "+RESET);
 System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃"+RESET);
 				
+System.out.println(tCREAM+"        ⠀⠀⠀⠀⠀⠀⠀⠀⠀              ⡀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                       ");
+System.out.println("                   ⠀⠀⠀ ⠀⠀  ⠀⠀⢜⢕⡝⣜⢭⢫⠒⡠⣴⣲⢯⡿⣽⠻⢓⣀⡀⠀⠀⠀                              ");
+System.out.println("                   ⠀⠀⠀⠀ ⠀  ⢀⢵⠈⢕⢵⡱⠕⣁⣮⣟⣗⣯⢿⠝⢁⣼⢯⡯⡿⡄⠀⠀                             ");
+System.out.println("                   ⠀⠀⠀⠀⠀   ⢘⡜⣕⢄⡈⠊⣸⣞⣗⣟⡾⣽⠋⣠⢿⣺⢯⢿⡽⡇⠀⠀⠀                            ");
+System.out.println("              ⠀⠀⠀⠀     ⠀   ⠐⡕⣇⢗⠕⣰⣟⣞⡷⡯⡿⡍⣠⢿⡽⣽⢯⢿⢽⠁⠀⠀⠀                            ");
+System.out.println("              ⠀     ⠀⠀⠀⠀   ⠀⠑⡕⡧⠡⣷⣻⢾⢽⡯⠏⢠⢾⢯⢿⣝⣯⢿⠁⠀⠀⠀⠀⠀                            ");
+System.out.println("           ⠀        ⠀⠀⠀⠀ ⠀⠀  ⠈⠪⠨⡾⣞⣯⠿⠉⣔⣟⣯⢿⡽⡾⠝⠀⠀⠀⠀⠀⠀⠀⠀                           ");
+System.out.println("           ⠀⠀⠀        ⠀⠀ ⠀⠀⠀⠀  ⠀⠈⠉⡨⡴⣯⢯⡷⡻⠝⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                            "+RESET);
+System.out.println();
+System.out.println();
+System.out.println();
+System.out.println("                      	 ◆:*:◇:*:◆:*:◇:*:◆	");
+System.out.println(BOLD+tCYAN+"                          [ 신메뉴 출시 ]					"+RESET);
+System.out.println();
+System.out.print("            ");
+AdminMenuController.searchNewMenu();
+System.out.println();
+System.out.println();
+System.out.println();
+System.out.println("                         ◆:*:◇:*:◆:*:◇:*:◆	");
 
-	   System.out.println("‘’’’’ꕤ’’’’’’’’’’’’’’ꕤ’’’’’’’’’ꕤ‘’’’’ꕤ’’’’’’’’’’’’’’ꕤ’’’’’’’’’ꕤ‘’’’’\r\n"
-						+ "\r\n"
-						+ "			･ ﾟ ₊ ﾟ+ ♡ ♡ ᕬ ᕬ ♡ ♡ ･₊ + .\r\n"
-						+ "			  + ･ﾟ + ♡ (⌯′-′⌯) ♡ + ･₊ ﾟ \r\n"
-						+ "			┏━ ʚෆɞ ━━━━ U U━━━ ʚෆɞ ━━┓\r\n"
-						+ "			♡　　 Cafe KOSTArica    ♡\r\n"
-						+ "			┗━ ʚෆɞ ━━━━━━━━━━━ ʚෆɞ ━━┛                   \r\n"
-						+ "˖♡ ⁺   ᘏ ⑅ ᘏ\r\n"
-						+ "˖° ⁺ (  っ• · • )╮=͟͟͞♡				  [9:00 ~ 21:00]\r\n"
-						+ ". ⠀. ⠀ ⑅ ⠀˚ ⁺		\r\n"
-						+ "⠀ . * ⠀ . ⠀ ° 🖤 .\r\n"
-						+ "⠀☁ ⠀⁝ ⠀ ⊹ ⠀⁝ ⠀ ⠀ ⠀ ⠀		now ᴘʟᴀʏɪɴɢ: Who asked (Feat: Nobody)\r\n"
-						+ "⠀ ₊ ⠀○¸ ⠀. ⠀ ⊹ ⠀.⠀ ⠀ ⠀		───────────────⚪────────────────────\r\n"
-						+ "⠀｡⠀⁝ ⠀ ⊹ ⠀⁝ ⠀ ｡⠀ ⠀ ⠀⠀		◄◄⠀▐▐⠀►► 𝟸:𝟷𝟾    | 𝟹:𝟻𝟼⠀───○ 🔊\r\n"
-						+ "\r\n"
-						+ "\r\n"
-					 
-						+ "⠀. ⠀⠀ ◦ ⠀⠀. ⠀ ⠀ ഒ\r\n"
-						+ "⠀ ☁ ˚ ⠀⑅ . ⠀ ☁　⠀⁺ 　. ⠀° ⠀. ⠀. ☁ . ⠀° ⠀. ˚ ⠀. ⠀｡ ☁\r\n"
-						+ "‘’’’’ꕤ’’’’’’’’’’’’’’ꕤ’’’’’’’’’ꕤ‘’’’’ꕤ’’’’’’’’’’’’’’ꕤ’’’’’’’’’ꕤ‘’’’’");
+System.out.println(BOLD+tCYAN+"                      	 [ BEST 메뉴 추천 ]	"+RESET);
+System.out.println();
+AdminMenuController.searchBestMenu();
 
 				List<Menu> menus = printMenuByCategory(currentCategory);
 				
@@ -143,7 +147,8 @@ System.out.println(tYELLOW+"▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃�
 			throws SQLException, NotFoundException {
 		
 		String categories[] = {"", "커피", "음료", "푸드"};
-		System.out.println("[A] COFFEE	           [B] Non-COFFEE	         [C] FOOD");
+		System.out.println(bWHITE + tBLACK + 
+                "     [A] COFFEE      |   [B] Non-COFFEE     |   [C] FOOD	    	"+RESET);
 		System.out.println("현재 카테고리: " + categories[categoryNo]);
 		
 		List<Menu> menus = menuDao.searchByCategory(categoryNo);
