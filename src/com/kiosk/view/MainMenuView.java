@@ -49,7 +49,7 @@ public class MainMenuView implements ConsoleColor {
 		    System.out.println();
 		    System.out.println("                         ◆:*:◇:*:◆:*:◇:*:◆	");
 
- System.out.println(BOLD+tCYAN+"                           [ BEST 메뉴 ] 	");
+		    System.out.println(BOLD+tCYAN+"                      	 [ BEST 메뉴 추천 ]	"+RESET);
 		    System.out.println();
 		    AdminMenuController.searchBestMenu();
 			printMainMenu(); //메인화면 메뉴 출력
@@ -66,7 +66,14 @@ public class MainMenuView implements ConsoleColor {
 				AdminMainView.adminLogin(); //관리자 로그인 화면
 				break;
 			case 0 :
+				AdminMenuController.updateCapacity();
 				System.exit(0); //콘솔 종료
+				break;
+		    default:
+		    	System.out.println();
+		        System.out.println(tRED + "▶ 올바른 숫자를 입력하세요! (1, 2, 0 중 선택)" + RESET);
+		        System.out.println();
+		        break;
 			}//end switch
 			
 		}//end while

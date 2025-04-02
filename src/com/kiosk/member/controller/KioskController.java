@@ -8,10 +8,11 @@ import com.kiosk.member.model.dto.Menu;
 import com.kiosk.member.model.dto.MenuOption;
 import com.kiosk.member.service.MenuSelectService;
 import com.kiosk.member.service.OrderFlowService;
+import com.kiosk.view.ConsoleColor;
 import com.kiosk.view.MemberCouponViewHB;
 import com.kiosk.view.PaymentViewHB;
 
-public class KioskController {
+public class KioskController implements ConsoleColor {
 
 	private final MenuSelectService menuService = new MenuSelectService();
 	private final OrderFlowService orderService = new OrderFlowService();
@@ -36,12 +37,16 @@ public class KioskController {
             }
             
             orderCart.put(selectedMenu, option);
-            System.out.println("장바구니에 담았습니다.");
             System.out.println();
-            System.out.println("다음 작업을 선택하세요:");
-            System.out.println("[1] 주문 계속하기");
-            System.out.println("[2] 결제 진행하기");
-            System.out.println("[0] 주문 취소하기");
+            System.out.println(bCYAN+"			장바구니에 담았습니다.			"+RESET);
+            System.out.println();
+            System.out.println("╭╼|═════════════════════════════════|╾╮\r\n"
+            		+ BOLD+ "	   	"+bMAGENTA+"다음 작업을 선택하세요\r\n"
+            		+ RESET+ BOLD+"\r\n"
+            		+ "	  [1] 주문 계속하기\r\n"
+            		+ "	  [2] 결제 진행하기\r\n"
+            		+ "	  [3] 주문 취소하기\r\n"
+            		+ "╰╼|═════════════════════════════════|╾╯");
             System.out.print("선택: ");
             String action = sc.nextLine();
             
@@ -49,10 +54,13 @@ public class KioskController {
             case "1":
                 continue;
             case "2":
-                System.out.println("\n--- 결제 옵션 ---");
-                System.out.println("[1] 적립 및 쿠폰 사용");
-                System.out.println("[2] 바로 결제");
-                System.out.println("[0] 이전으로");
+                System.out.println("╭╼|═════════════════════════════════|╾╮\r\n"
+                		+ BOLD+ "	   		"+bMAGENTA+"결제 옵션\r\n"
+                		+ RESET+ BOLD+"\r\n"
+                		+ "	  [1] 적립 및 쿠폰 사용\r\n"
+                		+ "	  [2] 바로 결제\r\n"
+                		+ "	  [3] 이전으로\r\n"
+                		+ "╰╼|═════════════════════════════════|╾╯");
                 System.out.print("선택: ");
                 String payOption = sc.nextLine();
 
@@ -63,9 +71,8 @@ public class KioskController {
                         continue;
                         
                     case "2": //바로결제
-                    	
-                    	System.out.println("[주문 요약]");
-                    	
+                    	System.out.println();
+                    	System.out.println("╔════════════ 주문 요약 ════════════╗");                    	
                     	for (Map.Entry<Menu, MenuOption> entry : orderCart.entrySet()) {
                             Menu menu = entry.getKey();
                             MenuOption opt = entry.getValue();
@@ -75,10 +82,11 @@ public class KioskController {
                             
                             int total = (menu.getBasicPrice() + opt.getExtraFee()) * quantity;
 
-                            System.out.println("- " + menu.getMenuName() + " x " + quantity + "잔 (" + total + "원)");
+                            System.out.println("	- " + menu.getMenuName() + " x " + quantity + "잔 (" + total + "원)");
                         }
-
-                        System.out.print("\n위 내용으로 결제하시겠습니까? [Y/N]: ");
+                    	System.out.println("﻿╚═════════════════════════════════╝");
+                    	System.out.println();
+                        System.out.print(bWHITE+tBLACK+"위 내용으로 결제하시겠습니까? [Y/N]: "+RESET);
                         String confirm = sc.nextLine().trim().toUpperCase();
                         if (confirm.equals("Y")) {
                             PaymentViewHB.directPay(orderCart);

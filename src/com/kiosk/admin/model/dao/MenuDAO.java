@@ -47,8 +47,13 @@ public interface MenuDAO {
      * @param 수정할 메뉴 정보 객체(MenuDTO menu)
      */
     int update(Menu menu) throws SQLException;
-
     
+    
+    /**
+     * 메뉴번호로 메뉴 판매여부를 조회
+     */
+    int searchIsActive(int menuNo) throws SQLException;
+
     
 	/**
 	 * 메뉴 삭제
@@ -69,5 +74,9 @@ public interface MenuDAO {
 	 */
 	public List<String> searchBestMenu() throws SQLException;
 
+    /**
+     * 마감 시 재고 수정
+     */
+    int updateCapacity() throws SQLException;
     
 }
