@@ -21,9 +21,9 @@ public class AdminStatsView implements ConsoleColor {
 		while (true) {
 			System.out.println();
 			System.out.println("════════════════════════════════════════════════════════════════════════");
-			System.out.println("		통계 조회 페이지입니다. 무엇을 하시겠습니까?");
+			System.out.println("	     통계 조회 페이지입니다. 무엇을 하시겠습니까?");
 			System.out.println("════════════════════════════════════════════════════════════════════════");
-			System.out.println(bWHITE+tBLACK+"  [1]메뉴별 판매 | [2]총매출 | [3]시간대별 주문 | [4]지난 비교 | [0]뒤로    "+RESET);
+			System.out.println(bWHITE+tBLACK+"  [1]메뉴별 | [2]총매출 | [3]시간대별 주문 | [4]지난 비교 | [0]뒤로    "+RESET);
 			int input = InputValid.getNumberInput("선택 ▶ ");
 			System.out.println();
 			System.out.println();
@@ -59,10 +59,9 @@ public class AdminStatsView implements ConsoleColor {
 	 * 메뉴별 판매수  Process View
 	 */
 	public static void printMenuSalesProcess() {
-		System.out.println("***************************** [ 메뉴별 판매 수 ] *******************************");
-		System.out.println(bWHITE+tBLACK+"   [1] 일간 조회   |   [2] 주간 조회   |   [3] 월간 조회   |   [0] 뒤로   "  +RESET);
-		System.out.print("선택 ▶ ");
-		int input = Integer.parseInt(sc.nextLine());
+		System.out.println("************************* [ 메뉴별 판매 수 ] *******************************");
+		System.out.println(bWHITE+tBLACK+"    [1] 일간 조회  |  [2] 주간 조회  |  [3] 월간 조회  |  [0] 뒤로      "  +RESET);
+		int input = InputValid.getNumberInput("선택 ▶ ");
 		
 		if(input == 0) {
 			printAdminStatsManage();
@@ -75,10 +74,9 @@ public class AdminStatsView implements ConsoleColor {
 	 * 시간대별 주문수  Process View
 	 */
 	public static void printSalesTimeProcess() {
-		System.out.println("************************** [ 시간대별 주문 수 ] **********************************");
-		System.out.println(bWHITE+tBLACK+"      [1] 일간 조회       |       [2] 주간 조회       |       [0] 뒤로        "+RESET);
-		System.out.print("선택 > ");
-		int input = Integer.parseInt(sc.nextLine());
+		System.out.println("************************ [ 시간대별 주문 수 ] **********************************");
+		System.out.println(bWHITE+tBLACK+"     [1] 일간 조회      |      [2] 주간 조회      |      [0] 뒤로       "+RESET);
+		int input = InputValid.getNumberInput("선택 ▶ ");
 		
 		if(input == 0) {
 			printAdminStatsManage();
@@ -91,10 +89,9 @@ public class AdminStatsView implements ConsoleColor {
 	 * 지난 매출과 비교  Process View
 	 */
 	public static void printSalesCompareProcess() {
-		System.out.println("***************************** [ 지난 매출과 비교 ] *******************************");
-		System.out.println(bWHITE+tBLACK+"        [1] 주간        |        [2] 월간        |        [0] 뒤로       "+RESET);
-		System.out.print("선택 ▶ ");
-		int input = Integer.parseInt(sc.nextLine());
+		System.out.println("************************ [ 지난 매출과 비교 ] *******************************");
+		System.out.println(bWHITE+tBLACK+"       [1] 주간        |        [2] 월간        |        [0] 뒤로       "+RESET);
+		int input = InputValid.getNumberInput("선택 ▶ ");
 		
 		if(input == 0) {
 			printAdminStatsManage();
@@ -126,11 +123,11 @@ public class AdminStatsView implements ConsoleColor {
 		System.out.println();
 		System.out.println();
 		System.out.println("==================================================================================");
-	    System.out.println("                             메뉴 판매 통계 (" + (period == 1 ? "일간" : period == 2 ? "주간" : "월간") + ")");
+	    System.out.println("                          메뉴 판매 통계 (" + (period == 1 ? "일간" : period == 2 ? "주간" : "월간") + ")");
 	    System.out.println("==================================================================================");
 	    System.out.println();
 	    for (Stats stats : list) {
-	        System.out.println("                    [" + stats.getRank() + "위] " + stats.getMenuName() + ", 판매 수량: " + stats.getQuantitySold());
+	        System.out.println("                 [" + stats.getRank() + "위] " + stats.getMenuName() + ", 판매 수량: " + stats.getQuantitySold());
 	    }
 	    System.out.println();
 	    System.out.println("=================================================================================");
@@ -143,12 +140,12 @@ public class AdminStatsView implements ConsoleColor {
 		System.out.println();
 		System.out.println();
 	    System.out.println("=================================================================================");
-	    System.out.println("                                   총 매출");
+	    System.out.println("                                총 매출");
 	    System.out.println("=================================================================================");
 	    System.out.println();
-	    System.out.println("                            [ 일간 ] " + stats.getTotalDaily() + " 원");
-	    System.out.println("                            [ 주간 ] " + stats.getTotalWeekly() + " 원");
-	    System.out.println("                            [ 월간 ] " + stats.getTotalMonthly() + " 원");
+	    System.out.println("                         [ 일간 ] " + stats.getTotalDaily() + " 원");
+	    System.out.println("                         [ 주간 ] " + stats.getTotalWeekly() + " 원");
+	    System.out.println("                         [ 월간 ] " + stats.getTotalMonthly() + " 원");
 	    System.out.println();
 	    System.out.println("=================================================================================");
 	}
@@ -160,7 +157,7 @@ public class AdminStatsView implements ConsoleColor {
 		System.out.println();
 		System.out.println();
 	    System.out.println("=================================================================================");
-	    System.out.println("                         시간대별 주문 수 (" + (period == 1 ? "일간" : "주간") + ")");
+	    System.out.println("                      시간대별 주문 수 (" + (period == 1 ? "일간" : "주간") + ")");
 	    System.out.println("=================================================================================");
 
 	    // 최대 주문 수 찾기
@@ -188,11 +185,11 @@ public class AdminStatsView implements ConsoleColor {
 		System.out.println();
 		System.out.println();
 	    System.out.println("=================================================================================");
-	    System.out.println("                              지난" + str + " 매출 비교");
+	    System.out.println("                           지난" + str + " 매출 비교");
 	    System.out.println("=================================================================================");
 
-	    System.out.println("                           [ 이번" + str + " ] " + stats.getOrderHour() + " 원");
-	    System.out.println("                           [ 지난" + str + " ] " + stats.getTotalSales() + " 원");
+	    System.out.println("                        [ 이번" + str + " ] " + stats.getOrderHour() + " 원");
+	    System.out.println("                        [ 지난" + str + " ] " + stats.getTotalSales() + " 원");
 
 	    System.out.println("=================================================================================");
 	    

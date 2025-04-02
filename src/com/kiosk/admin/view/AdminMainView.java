@@ -31,9 +31,9 @@ public class AdminMainView implements ConsoleColor {
 	public static void printAdminMain() {
 		System.out.println();
 		System.out.println();
-		System.out.println(bBLUE + "═══════════ KOSTArica Cafe '관리자모드'입니다. 메뉴를 선택하세요══════════");
+		System.out.println(bBLUE + "═════════ KOSTArica Cafe '관리자모드'입니다. 메뉴를 선택하세요══════════");
 		System.out.println("                                                                         ");
-		System.out.println("    [1] 메뉴관리   |  [2] 쿠폰관리   |  [3] 통계조회   |  [0] 뒤로가기    ");
+		System.out.println("  [1] 메뉴관리   |  [2] 쿠폰관리   |  [3] 통계조회   |  [0] 뒤로가기    ");
 		System.out.println("                                                                         ");
 		System.out.println("═════════════════════════════════════════════════════════════════════════"+RESET);
 	}// printMainMenu

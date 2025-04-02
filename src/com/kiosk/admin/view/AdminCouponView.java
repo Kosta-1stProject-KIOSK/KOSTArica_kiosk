@@ -21,11 +21,11 @@ public class AdminCouponView implements ConsoleColor {
 		System.out.println();
 		System.out.println();
 		System.out.println("════════════════════════════════════════════════════════════════════════");
-		System.out.println("		쿠폰 관리 페이지입니다. 무엇을 하시겠습니까?");
+		System.out.println("	     쿠폰 관리 페이지입니다. 무엇을 하시겠습니까?");
 		System.out.println("════════════════════════════════════════════════════════════════════════");
 
 		while (true) {
-			System.out.println(bWHITE+tBLACK+"[1] 전체 조회 | [2]회원별 조회 | [3]발행 | [4]사용갱신 | [5]삭제 | [0]뒤로  "+RESET);
+			System.out.println(bWHITE+tBLACK+"[1] 전체 | [2]회원별 조회 | [3]발행 | [4]사용갱신 | [5]삭제 | [0]뒤로  "+RESET);
 			int input = InputValid.getNumberInput("선택 ▶ ");
 			System.out.println();
 			System.out.println();
@@ -151,7 +151,7 @@ public class AdminCouponView implements ConsoleColor {
 	 * 조회 시 쿠폰 리스트 출력 - 전체, 회원별
 	 */
 	public static void printAllCouponList(List<Coupon> list, boolean isMemberView) {
-		System.out.println("***************************** [ 전체 " + list.size() + "개 ] *******************************");
+		System.out.println("*************************** [ 전체 " + list.size() + "개 ] *******************************");
 //		for(Coupon coupon : list) {
 //			if(isMemberView) { //회원별 조회일 경우
 //				System.out.println("");
@@ -163,12 +163,12 @@ public class AdminCouponView implements ConsoleColor {
 //		}//end for
 		
 		if(isMemberView) { //회원별 조회일 경우
-			System.out.println(bWHITE+tBLACK+"   쿠폰번호  |  쿠폰이름  |  할인금액  |  시작일  |  만료일  |  사용여부     "+RESET);
+			System.out.println(bWHITE+tBLACK+" 쿠폰번호  |  쿠폰이름  |  할인금액  |  시작일  |  만료일  |  사용여부     "+RESET);
 		for(Coupon coupon : list) {
 				System.out.println(coupon.toStringForSearchByMember());
 			}//end else
 		}else {
-			System.out.println(bWHITE+tBLACK+"   쿠폰번호 | 쿠폰이름 | 할인금액 | 시작일 | 만료일 | 사용여부 | 회원번호    "+RESET);
+			System.out.println(bWHITE+tBLACK+"쿠폰번호 | 쿠폰이름 | 할인금액 | 시작일 | 만료일 | 사용여부 | 회원번호    "+RESET);
 			for(Coupon coupon : list) {
 			System.out.println(coupon); //전체 조회일 경우
 			}

@@ -175,19 +175,19 @@ public class Menu {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(menuNo);
-		builder.append("| ");
+		builder.append(" |");
 		builder.append(menuName);
-		builder.append("| ");
+		builder.append("|");
 		builder.append(basicPrice);
-		builder.append("| ");
+		builder.append("|");
 		builder.append(description);
-		builder.append("| ");
+		builder.append("|");
 		builder.append(inputDate);
-		builder.append("| ");
+		builder.append("|");
 		builder.append(capacity);
-		builder.append("| ");
+		builder.append("|");
 		builder.append(isActiveStr);
-		builder.append("| ");
+		builder.append("|");
 		builder.append(categoryName);
 		return builder.toString();
 	}
