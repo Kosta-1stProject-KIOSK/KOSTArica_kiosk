@@ -27,9 +27,9 @@ public class AdminMenuView implements ConsoleColor{
 		while (true) {
 			System.out.println();
 			System.out.println("════════════════════════════════════════════════════════════════════════");
-			System.out.println("		메뉴 관리 페이지입니다. 무엇을 하시겠습니까?");
+			System.out.println("	     메뉴 관리 페이지입니다. 무엇을 하시겠습니까?");
 			System.out.println("════════════════════════════════════════════════════════════════════════");
-			System.out.println(bWHITE+tBLACK+"      [1] 조회  |  [2] 등록  |  [3] 수정  |  [4] 삭제  |  [0] 뒤로가기     "+RESET);
+			System.out.println(bWHITE+tBLACK+"     [1] 조회  |  [2] 등록  |  [3] 수정  |  [4] 삭제  |  [0] 뒤로     "+RESET);
 			int input = InputValid.getNumberInput("선택 ▶ ");
 			System.out.println();
 			System.out.println();
@@ -154,7 +154,7 @@ public class AdminMenuView implements ConsoleColor{
 	 */
 	public static void printAllMenuList(List<Menu> list) {
 		System.out.println("***************************** [ 메뉴 " + list.size() + "개 ] *******************************");
-		System.out.println(bWHITE+tBLACK+"  메뉴번호 | 메뉴이름 | 가격 | 설명 |  등록일  | 재고 | 사용여부 | 카테고리  "+RESET);
+		System.out.println(bWHITE+tBLACK+" 번호 | 메뉴이름 | 가격 | 설명 |  등록일  | 재고 | 사용여부 | 카테고리  "+RESET);
 		for(Menu menu : list) {
 			System.out.println(menu);
 		}//end for
@@ -168,12 +168,12 @@ public class AdminMenuView implements ConsoleColor{
 	 * @param list
 	 */
 	public static void printMenuNameList(List<Menu> list) {
-		System.out.println("***************************** [현재 메뉴] *******************************");
+		System.out.println("*************************** [현재 메뉴] *******************************");
 		// 메뉴 번호(menuNo) 기준으로 정렬
 	    Collections.sort(list, Comparator.comparingInt(Menu::getMenuNo));
 		
 		for (int i = 0; i < list.size(); i++) {
-	        System.out.print(list.get(i).getMenuNo() + ". " + list.get(i).getMenuName() + "   ");
+	        System.out.print(list.get(i).getMenuNo() + ". " + list.get(i).getMenuName() + " ");
 
 	        // 5개 출력할 때마다 줄바꿈
 	        if ((i + 1) % 5 == 0) {

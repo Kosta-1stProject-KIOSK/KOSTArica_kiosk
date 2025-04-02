@@ -6,8 +6,9 @@ import com.kiosk.admin.model.dto.Stats;
 import com.kiosk.admin.service.AdminStatsService;
 import com.kiosk.admin.view.AdminFailView;
 import com.kiosk.admin.view.AdminStatsView;
+import com.kiosk.view.ConsoleColor;
 
-public class AdminStatsController {
+public class AdminStatsController implements ConsoleColor{
 	static AdminStatsService ass = new AdminStatsService();
 	
 	/**
@@ -18,7 +19,7 @@ public class AdminStatsController {
 			List<Stats> list = ass.MenuSales(period);
 			AdminStatsView.printMenuSalesList(list, period);
 		} catch (Exception e) {
-			AdminFailView.errorMessage(e.getMessage());
+			AdminFailView.errorMessage(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		} finally {
 			System.out.println();
 			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
@@ -34,7 +35,7 @@ public class AdminStatsController {
 			Stats stats = ass.getTotalSales();
 			AdminStatsView.printTotalSales(stats);
 		} catch (Exception e) {
-			AdminFailView.errorMessage(e.getMessage());
+			AdminFailView.errorMessage(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		} finally {
 			System.out.println();
 			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
@@ -50,7 +51,7 @@ public class AdminStatsController {
 			List<Stats> list = ass.salesTime(period);
 			AdminStatsView.printSalesTimeList(list, period);
 		} catch (Exception e) {
-			AdminFailView.errorMessage(e.getMessage());
+			AdminFailView.errorMessage(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		} finally {
 			System.out.println();
 			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");
@@ -66,7 +67,7 @@ public class AdminStatsController {
 			Stats stats = ass.salesCompare(period);
 			AdminStatsView.printSalesCompare(stats, period);
 		} catch (Exception e) {
-			AdminFailView.errorMessage(e.getMessage());
+			AdminFailView.errorMessage(tRED + "▶ 현재 통계를 낼 수 없습니다." + RESET);
 		} finally {
 			System.out.println();
 			System.out.println("▶ 관리자 메뉴 통계 화면으로 돌아갑니다.");

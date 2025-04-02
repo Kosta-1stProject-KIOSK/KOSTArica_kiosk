@@ -96,17 +96,17 @@ public class Coupon {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(couponNo);
-		builder.append(" | ");
+		builder.append(" |");
 		builder.append(couponName);
-		builder.append(" | ");
+		builder.append("|");
 		builder.append(discount);
-		builder.append(" | ");
+		builder.append("|");
 		builder.append(validFrom);
-		builder.append(" | ");
+		builder.append("|");
 		builder.append(validUntil);
-		builder.append(" | ");
+		builder.append("|");
 		builder.append(isUsedStr);
-		builder.append(" | ");
+		builder.append("|");
 		builder.append(memberId);
 		return builder.toString();
 	}
