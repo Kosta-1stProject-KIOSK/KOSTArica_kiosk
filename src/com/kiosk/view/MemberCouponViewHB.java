@@ -25,7 +25,9 @@ public class MemberCouponViewHB {
         int couponChoice = 0;
         
         try {
-        System.out.println("\n회원 적립 및 쿠폰 사용을 진행합니다.");
+        System.out.println();
+        System.out.println("╭╼|═════════════════════════════════════════════|╾╮");	
+        System.out.println("    적립 & 쿠폰 ");
         MemberDAO memberDao = new MemberDAOImpl();
         CouponDAO couponDao = new CouponDAOImpl();
         
@@ -40,15 +42,18 @@ public class MemberCouponViewHB {
             int price = (menu.getBasicPrice() + opt.getExtraFee());
             totalPrice += price;
 
-            System.out.println("\n" + menu.getMenuName());
-            System.out.println("- " + opt.getTemperature());
-            System.out.println("- " + opt.getSize());
-            if (opt.getShot() > 0) System.out.println("- +" + opt.getShot() + "샷");
-            if (opt.getWhipping() == 1) System.out.println("- 휘핑 추가");
-            System.out.println("총 가격: " + price + "원");
+            System.out.println("╭────────────────────────.★..─╮");
+            System.out.println("  " + menu.getMenuName());
+            System.out.println(" - " + opt.getTemperature());
+            System.out.println(" - " + opt.getSize());
+            if (opt.getShot() > 0) System.out.println(" - +" + opt.getShot() + "샷");
+            if (opt.getWhipping() == 1) System.out.println(" - 휘핑 추가");
+            System.out.println(" 총 가격: " + price + "원");
+            System.out.println("╰─..★.────────────────────────╯");
         }
-
-        System.out.println("\n전화번호(숫자만)를 입력해주세요.");
+            System.out.println("────────────────────────────────");
+            System.out.println("전화번호(숫자만)를 입력해주세요.");
+            System.out.println("────────────────────────────────");
         System.out.print("입력: ");
         String phone = sc.nextLine().trim();
         
@@ -70,7 +75,10 @@ public class MemberCouponViewHB {
         Member member = memberDao.searchById(phone);  // 전화번호 = memberId
 
         if (member == null) {
-            System.out.println("신규 회원입니다. 이름과 생년월일을 입력해주세요.");
+        	System.out.println();
+            System.out.println("반갑습니다.");
+            System.out.println("신규 회원 등록을 위해 이름과 생년월일을 입력해주세요.");
+            System.out.println("────────────────────────────────");
             System.out.print("이름: ");
             String name = sc.nextLine();
 
@@ -81,7 +89,11 @@ public class MemberCouponViewHB {
             member = new Member(phone, name, birth, joinDate, 0);     // 스탬프 0개로 시작
 
             memberDao.insert(member);
-            System.out.println(name + " 님, 회원가입이 완료되었습니다.");
+            System.out.println();
+            System.out.println("────────────────────────────────");
+            System.out.println(name + " 님");
+            System.out.println("회원가입이 완료되었습니다.");
+            
         } else {
             System.out.println(member.getMemberName() + " 님, 환영합니다!");
         }
@@ -95,14 +107,18 @@ public class MemberCouponViewHB {
         int selectedDiscount = 0;
 
         if (coupons == null || coupons.isEmpty()) {
+        	System.out.println();
+        	System.out.println("------------------------------------------------------------------------------");
             System.out.println("보유 중인 쿠폰이 없습니다.");
         } else {
+        	System.out.println("");
+        	System.out.println("------------------------------------------------------------------------------");
             System.out.println("보유 중인 쿠폰:");
             for (int i = 0; i < coupons.size(); i++) {
                 Coupon c = coupons.get(i);
                 if (c.getValidUntil().compareTo(LocalDate.now().toString()) < 0) continue;
 
-                System.out.printf("%d. %s (할인: %d원, 사용기한: %s)%s\n",
+                System.out.printf(" - %d. %s (할인: %d원, 사용기한: %s)%s\n",
                     i + 1,
                     c.getCouponName(),
                     c.getDiscount(),
@@ -111,7 +127,8 @@ public class MemberCouponViewHB {
                 );
             }
 
-            System.out.println("쿠폰을 사용하시겠습니까? (번호 입력, 사용 안 함은 0)");
+            System.out.println();
+            System.out.println("사용하실 쿠폰의 번호를 입력해주세요. (사용 안 함은 0)");
             System.out.print("선택: ");
             couponChoice = Integer.parseInt(sc.nextLine());
 
@@ -154,6 +171,7 @@ public class MemberCouponViewHB {
 
             couponDao = new CouponDAOImpl();
             couponDao.insert(newCoupon);
+            System.out.println();
             System.out.println("'회원적립쿠폰'이 발급되었습니다!");
 
             currentStamp = 0; // 초기화
@@ -191,19 +209,27 @@ public class MemberCouponViewHB {
 
         
         // 결제로 이동
-        System.out.println("\n결제를 진행합니다...");
-        try {
-            Thread.sleep(500);
-            System.out.println(".");
-            Thread.sleep(1000);
-            System.out.println(". .");
-            Thread.sleep(500);
-            System.out.println(". . .");
-        } catch (InterruptedException e) {
-            // 무시
-        }
-
-        System.out.println("결제가 완료되었습니다. 감사합니다!");
+//        System.out.println("\n결제를 진행합니다...");
+//        try {
+//            Thread.sleep(1500);
+//            System.out.println(".");
+//            Thread.sleep(1000);
+//            System.out.println(". .");
+//            Thread.sleep(700);
+//            System.out.println(". . .");
+//            Thread.sleep(1100);
+//            System.out.println(". . . .");
+//            Thread.sleep(700);
+//            System.out.println(". . .");
+//            Thread.sleep(700);
+//            System.out.println(". .");
+//            Thread.sleep(500);
+//            System.out.println(".");
+//        } catch (InterruptedException e) {
+//            // 무시
+//        }
+//
+//        System.out.println("결제가 완료되었습니다. 감사합니다!");
         try {
             boolean takeOut = true;  // 현재는 기본값 설정
             Integer usedCouponNo = null;

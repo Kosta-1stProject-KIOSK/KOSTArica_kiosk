@@ -11,7 +11,7 @@ public class PaymentViewHB implements ConsoleColor {
 		
         int total = 0;
         System.out.println();
-    	System.out.println("╔════════════ 주문 요약 ════════════╗");                    	
+    	System.out.println("╔══════════════════ 주문 요약 ══════════════════╗");                    	
         for (Map.Entry<Menu, MenuOption> entry : cart.entrySet()) {
             Menu m = entry.getKey();
             MenuOption o = entry.getValue();
@@ -23,13 +23,43 @@ public class PaymentViewHB implements ConsoleColor {
             
             System.out.println("- " + m.getMenuName() + " x " + quantity + "잔 (" + itemPrice + "원)");
         }
-    	System.out.println("﻿╚═════════════════════════════════╝");
+
+    	System.out.println("﻿╚═══════════════════════════════════════════════╝");
+
 
         
+        
+        
+        try {
+			Thread.sleep(1400);
+	        System.out.println(".");
+	        Thread.sleep(1200);
+	        System.out.println(". .");
+	        Thread.sleep(1000);
+	        System.out.println(". . .");
+	        Thread.sleep(800);
+	        System.out.println(". . . .");
+	        Thread.sleep(500);
+	        System.out.println();
+	        System.out.println();
+	        System.out.println();
+	        System.out.println();
+	        System.out.println();
+	        System.out.println("*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*");
+	        System.out.println("                        메인 화면으로 돌아갑니다.                    ");
+	        System.out.println("*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*:◆:*:◇:*");
+	        Thread.sleep(1000);
+	        System.out.print("3 ");
+	        Thread.sleep(1000);
+	        System.out.print("2 ");
+	        Thread.sleep(1000);
+	        System.out.print("1 ");
+	        Thread.sleep(1000);
+	        System.out.print("... ");
+        } catch (InterruptedException e) {
+        }
 
-        System.out.println(bCYAN+"		결제가 완료되었습니다.		"+RESET);
-        System.out.println("총 결제 금액: " + total + "원");
-        System.out.println("\n메인 화면으로 돌아갑니다.\n");
+     
     }
 	
 	
